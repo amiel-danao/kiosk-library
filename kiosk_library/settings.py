@@ -41,13 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
+    'bookborrowing',
     'crispy_forms',
     'crispy_bootstrap5',
     'django_bootstrap5',
     'rest_framework',
     'phonenumbers',
     'django_tables2',
-    'django_filters'
+    'django_filters',
+    'isbn_field'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'system.context_processors.global_context',
             ],
         },
     },
