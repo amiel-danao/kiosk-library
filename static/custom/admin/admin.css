@@ -1,0 +1,12 @@
+main {
+    background-size: cover;
+}
+
+.bg-dark {
+    background-color: rgb(58, 58, 58) !important;
+}
+
+.bd-indigo-600 {
+    color: #fff;
+    background-color: #330977 !important;
+}

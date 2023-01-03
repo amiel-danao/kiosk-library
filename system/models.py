@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from kiosk_library.managers import CustomUserManager
 import uuid
 from datetime import date
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from isbn_field import ISBNField
@@ -67,6 +67,10 @@ class Book(CatalogueMixin):
         related_name='books',
         related_query_name='book'
     )
+
+    publish_date = models.DateField(null=True, blank=True)
+    classification = models.PositiveIntegerField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(999)])
 
     class Meta:
         verbose_name = _('book')

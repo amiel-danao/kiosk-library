@@ -31,10 +31,9 @@ ALLOWED_HOSTS = ["127.0.0.1", "kiosk_library.pythonanywhere.com"]
 # Application definition
 
 INSTALLED_APPS = [
-    # 'jet.dashboard',
-    # 'jet',
     'admin_volt.apps.AdminVoltConfig',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
+    'kiosk_library.apps.MyAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -49,7 +48,8 @@ INSTALLED_APPS = [
     'phonenumbers',
     'django_tables2',
     'django_filters',
-    'isbn_field'
+    'isbn_field',
+    'bootstrap5'
 ]
 
 MIDDLEWARE = [

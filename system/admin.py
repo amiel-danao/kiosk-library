@@ -10,13 +10,21 @@ exempted_models = (Group, )
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     fields = ('isbn', 'genre', 'author', )
-    list_display = ('isbn', 'genres', 'authors', )
+    list_display = ('isbn', 'genres', 'authors',
+                    'classification_number', 'publish_date')
+    list_filter = ('isbn',
+                   'classification', 'publish_date')
+    search_fields = ('isbn',
+                     'classification', 'publish_date')
 
     def authors(self, obj):
         return ",".join([str(p) for p in obj.author.all()])
 
     def genres(self, obj):
         return ",".join([str(p) for p in obj.genre.all()])
+
+    def classification_number(self, obj):
+        return str(obj.classification).zfill(3)
 
 
 app_config = apps.get_app_config('system')

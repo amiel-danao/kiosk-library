@@ -13,7 +13,7 @@ SCHEDULE_DATEFORMAT_24H = "%Y-%m-%d, %H:%M"
 def global_context(request):
     return {
         'app_title': admin.site.site_title,
-        'app_short_title': 'Kiosk Book Library',
+        'app_short_title': 'NCST Kiosk Book Library',
         'app_description': 'NCST Kiosk Book Library System',
         'app_schedule': 'Mon - Fri : 09.00 AM - 05.00 PM',
         'app_location': '',

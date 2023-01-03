@@ -1,0 +1,41 @@
+{% load i18n %}
+
+{% if app_list %}
+  {% for app in app_list %}
+    <div class="app-{{ app.app_label }} module{% if app.app_url in request.path|urlencode %} current-app{% endif %}">
+        <!-- <a href="{{ app.app_url }}" class="section" title="{% blocktranslate with name=app.name %}Models in the {{ name }} application{% endblocktranslate %}">{{ app.name }}</a> -->
+        <div class="row">
+        {% for model in app.models %}
+            <div class="col-4">
+                <div class="card mb-1">
+                    <div class="card-header pb-0 bd-indigo-600">
+                    {% if model.admin_url %}
+                        <h5 class="card-title text-white"><a href="{{ model.admin_url }}"{% if model.admin_url in request.path|urlencode %} aria-current="page"{% endif %}> {{ model.name }} </a><span class="badge text-white bg-warning">{{ model.count }}</span></h5>
+                    {% else %}
+                        <h5 class="card-title text-white">{{ model.name }} <span class="badge text-bg-primary bg-warning"> {{ model.count }}</span></h5>
+                    {% endif %} 
+                    </div>
+                    <div class="card-footer">
+                    {% if model.add_url %}
+                        <a href="{{ model.add_url }}" class="btn btn-success">{% translate 'Add' %}</a>
+                    {% endif %}
+                    
+                    {% if model.admin_url and show_changelinks %}
+                        {% if model.view_only %}
+                            <a href="{{ model.admin_url }}" class="btn btn-info">{% translate 'View' %}</a></td>
+                        {% else %}
+                            <a href="{{ model.admin_url }}" class="btn btn-warning">{% translate 'Change' %}</a></td>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+      
+        
+    </div>
+  {% endfor %}
+{% else %}
+  <p>{% translate 'You don’t have permission to view or edit anything.' %}</p>
+{% endif %}
