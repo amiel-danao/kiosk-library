@@ -59,6 +59,8 @@ class Book(CatalogueMixin):
 
     isbn = ISBNField(unique=True)
 
+    title = models.CharField(max_length=255, default='', blank=False)
+
     # ManyToManyField used because genre can contain many books.
     # Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
@@ -104,6 +106,9 @@ class BookInstance(models.Model):
         max_length=1, choices=LOAN_STATUS, blank=True, default='a'
     )
 
+    borrow_count = models.PositiveIntegerField(default=0)
+
+
     class Meta:
         verbose_name = _('book instance')
         verbose_name_plural = _('book instances')
@@ -138,3 +143,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         verbose_name = "User"
+
+
+class Transaction(models.Model):
+    book = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
+    date = models.DateField(auto_now=True)
+    
