@@ -74,6 +74,9 @@ class Book(CatalogueMixin):
     classification = models.PositiveIntegerField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(999)])
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = _('book')
         verbose_name_plural = _('books')
@@ -145,7 +148,24 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = "User"
 
 
+class Student(models.Model):
+    school_id = models.CharField(unique=True, max_length=15, blank=False)
+
+    def __str__(self):
+        return self.school_id
+
+
 class Transaction(models.Model):
     book = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
     date = models.DateField(auto_now=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE,)
+    class Meta:
+        abstract = True
+
+
+class IncomingTransaction(Transaction):
+    pass
     
+
+class OutgoingTransaction(Transaction):
+    pass

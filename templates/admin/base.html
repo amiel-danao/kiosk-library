@@ -1,44 +1,31 @@
-<!--
+{% load i18n static admin_volt %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_direction as direction %}
+{% get_admin_setting as admin_setting %}
 
-=========================================================
-* Volt Free - Bootstrap 5 Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard
-* Copyright 2020 Themesberg (https://www.themesberg.com)
-* License (https://themesberg.com/licensing)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
-
--->
-{% load i18n static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!-- Primary Meta Tags -->
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
 
-    <title>
-        {{ app_short_title }}
-    </title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="title" content="Volt Free Bootstrap Dashboard - Sign up page">
+    <meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta name="author" content="Themesberg">
     <meta name="description"
           content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
     <meta name="keywords"
-          content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard">
+          content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard"/>
     <link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-volt">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://demo.themesberg.com/volt-pro">
-    <meta property="og:title" content="Volt Free Bootstrap Dashboard - Sign up page">
+    <meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta property="og:description"
           content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
     <meta property="og:image"
@@ -47,7 +34,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
-    <meta property="twitter:title" content="Volt Free Bootstrap Dashboard - Sign up page">
+    <meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
     <meta property="twitter:description"
           content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
     <meta property="twitter:image"
@@ -65,22 +52,14 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- FA Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer">
-
-    <!-- Sweet Alert -->
     <link type="text/css" href="{% static 'admin_volt/assets/vendor/sweetalert2/dist/sweetalert2.min.css' %}"
           rel="stylesheet">
 
-    <!-- Notyf -->
     <link type="text/css" href="{% static 'admin_volt/assets/vendor/notyf/notyf.min.css' %}" rel="stylesheet">
-
-    <!-- Volt CSS -->
     <link type="text/css" href="{% static 'admin_volt/assets/css/volt.css' %}" rel="stylesheet">
 
-    <!-- Specific Page JS goes HERE  -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     {% block extrastyle %}{% endblock %}
     {% block extrahead %}{% endblock %}
     {% block blockbots %}
@@ -90,13 +69,56 @@
 
 <body>
 
-{% block content %}{% endblock content %}
+    {% if user.is_authenticated %}
+        {% include "admin/sidebar.html" %}
+    {% endif %}
 
+    <main {% if user.is_authenticated %}class="content"{% endif %}>
+        {% if user.is_authenticated %}
+            <!-- Navbar -->
+            {% include "admin/navigation.html" %}
+            <!-- End Navbar -->
+
+            <!-- Breadcrumbs -->
+            {% if not is_popup and user.is_authenticated %}
+                {% block breadcrumbs %}
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+                        <div class="d-block mb-4 mb-md-0">
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                                <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'admin:index' %}"><i class="fa fa-home"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item">{% if title %} &rsaquo; {{ title }}{% endif %}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                {% endblock %}
+            {% endif %}
+            <!-- End Breadcrumbs -->
+        {% endif %}
+
+        <!-- Content -->
+        {% block content %}{% endblock %}
+        <!-- End Content -->
+
+        {% if user.is_authenticated %}
+            <!-- Sidebar -->
+            {% block sidebar %}{% endblock %}
+            <!-- End Sidebar -->
+
+            <!-- Footer -->
+            {% block footer %}
+                {% include "admin/footer.html" %}
+            {% endblock %}
+            <!-- End Footer -->
+        {% endif %}
+    </main>
 
 <!-- Core -->
-<script src="{% static "admin_volt/assets/vendor/jquery/jquery.min.js" %}"></script>
 <script src="{% static 'admin_volt/assets/vendor/@popperjs/core/dist/umd/popper.min.js' %}"></script>
-<script src="{% static 'admin_volt/assets/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- <script src="{% static 'admin_volt/assets/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script> -->
 
 <!-- Vendor JS -->
 <script src="{% static 'admin_volt/assets/vendor/onscreen/dist/on-screen.umd.min.js' %}"></script>
@@ -130,11 +152,12 @@
 <script src="{% static 'admin_volt/assets/vendor/simplebar/dist/simplebar.min.js' %}"></script>
 
 <!-- Github buttons -->
-<script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Volt JS -->
 <script src="{% static 'admin_volt/assets/js/volt.js' %}"></script>
 <script src="{% static 'admin_volt/assets/js/scripts.js' %}"></script>
+<script src="https://kit.fontawesome.com/4fd3baa9fc.js" crossorigin="anonymous"></script>
 
 <script>
     {% if messages %}
@@ -144,7 +167,7 @@
     {% endif %}
 </script>
 
-<!-- Specific Page JS goes HERE  -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 {% block extrascript %}{% endblock %}
 </body>
 </html>

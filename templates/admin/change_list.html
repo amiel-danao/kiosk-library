@@ -2,6 +2,7 @@
 {% load i18n admin_urls static admin_list %}
 {% load bootstrap5 %}
 
+{% load crispy_forms_tags %}
 {% block extrastyle %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}">
@@ -63,6 +64,30 @@
                 <div class="row">
                 {% block search %}{% search_form cl %}{% endblock %}
 
+                {% if scan %}
+                    <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#qrScanModal">
+                        Scan QR <i class="bi bi-qr-code"></i>
+                    </button>
+                    
+                    <div class="modal" tabindex="-1" id="qrScanModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">{{ scan.modal_title|safe  }}</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div id="reader" width="600px"></div>
+                              {{ scan_form|crispy }}
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                              <button type="button" class="btn btn-primary">{{ scan.modal_accept_text|safe  }}</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                {% endif %}
 
                 {% if cl.has_filters %}
                 <div>
@@ -80,7 +105,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        
+
                                     {% for spec in cl.filter_specs %}
                                         {% admin_list_filter cl spec %}
                                     {% endfor %}
@@ -142,4 +167,49 @@
             </form>
         </div>
     </div>
+{% endblock %}
+{% block extrascript %}
+{% if scan %}
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script>
+        function selectElement(id, valueToSelect) {    
+            let element = document.getElementById(id);
+            element.value = valueToSelect;
+        }
+
+        
+
+        function onScanSuccess(decodedText, decodedResult) {
+            // handle the scanned code as you like, for example:
+            console.log(`Code matched = ${decodedText}`, decodedResult);
+            let books = JSON.parse(decodedText);
+            if (books.length == 0)
+            {
+                alert('Invalid QR code!');
+                return;
+            }
+            let book = books[0];            
+            console.log(book);
+
+            if (book.hasOwnProperty('pk')){
+                selectElement('id_book', book.pk);
+            }
+            else{
+                alert('Invalid QR code!');
+            }
+        }
+
+        function onScanFailure(error) {
+        // handle scan failure, usually better to ignore and keep scanning.
+        // for example:
+        console.warn(`Code scan error = ${error}`);
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader",
+        { fps: 10, qrbox: {width: 250, height: 250} },
+        /* verbose= */ false);
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
+{% endif %}
 {% endblock %}
