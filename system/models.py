@@ -7,9 +7,9 @@ import uuid
 from datetime import date
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-
 from isbn_field import ISBNField
 from bookborrowing.models import CatalogueMixin, TimeStampedMixin
+
 
 
 class Genre(CatalogueMixin):
@@ -84,6 +84,15 @@ class Book(CatalogueMixin):
     class JSONAPIMeta:
         resource_name = 'books'
 
+class Student(models.Model):
+    school_id = models.CharField(max_length=15, blank=True)
+    email = models.EmailField(unique=True, blank=False, default='')
+    first_name = models.CharField(blank=False, default='', max_length=50)
+    middle_name = models.CharField(blank=True, max_length=50)
+    last_name = models.CharField(blank=True, max_length=50)
+
+    def __str__(self):
+        return self.school_id
 
 class BookInstance(models.Model):
     """
@@ -91,6 +100,7 @@ class BookInstance(models.Model):
     (i.e. that can be borrowed from the library).
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    
 
     book = models.ForeignKey(
         Book,
@@ -102,7 +112,6 @@ class BookInstance(models.Model):
     LOAN_STATUS = (
         ('o', 'On loan'),
         ('a', 'Available'),
-        ('r', 'Reserved'),
     )
 
     status = models.CharField(
@@ -110,6 +119,8 @@ class BookInstance(models.Model):
     )
 
     borrow_count = models.PositiveIntegerField(default=0)
+
+    location = models.CharField(max_length=200, blank=True)
 
 
     class Meta:
@@ -129,7 +140,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     picture = models.ImageField(
         upload_to='images/', blank=True, null=True, default='')
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
 
     USERNAME_FIELD = "email"
@@ -148,24 +159,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = "User"
 
 
-class Student(models.Model):
-    school_id = models.CharField(unique=True, max_length=15, blank=False)
-
-    def __str__(self):
-        return self.school_id
-
-
 class Transaction(models.Model):
     book = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
-    date = models.DateField(auto_now=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE,)
+    borrower = models.ForeignKey(Student, on_delete=models.CASCADE,)
     class Meta:
         abstract = True
 
 
 class IncomingTransaction(Transaction):
-    pass
+    date_returned = models.DateField(default=timezone.now, blank=True)
     
 
 class OutgoingTransaction(Transaction):
-    pass
+    date_borrowed = models.DateField(default=timezone.now, blank=True)
+    return_date = models.DateField(null=True)
+
+    def __str__(self) -> str:
+        return f'{self.book.book.title} - {self.borrower}'

@@ -1,0 +1,42 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'system:index' %}">
+      <img src="{% static 'img/logo.png' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      {{ app_title }}
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+      {% if request.user.is_authenticated %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'system:index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Borrowed Books</a>
+        </li>
+      </ul>
+      {% endif %}
+
+    <span class="navbar-text p-x5 text-white">
+    {% if not request.user.is_authenticated %}
+    
+      <a href="{% url 'system:login' %}">Login</a>/
+      <a href="{% url 'system:register' %}">Register</a>
+    
+    {% else %}
+      {{request.user.email}}
+      <a href="{% url 'system:logout' %}">Log out</a>
+    {% endif %}
+  </span>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<p>Your account is now verified, click this <a href="{% url 'system:login' %}"> link </a> to login</p>
+{% endblock content %}

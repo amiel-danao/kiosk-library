@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,9 +32,11 @@ ALLOWED_HOSTS = ["127.0.0.1", "kiosk_library.pythonanywhere.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    
+    # 'jazzmin',
     'admin_volt.apps.AdminVoltConfig',
     # 'django.contrib.admin',
-    'kiosk_library.apps.MyAdminConfig',
+    'kiosk_library.apps.MyAdminConfig',    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -162,3 +165,21 @@ AUTH_USER_MODEL = "system.CustomUser"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+ }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_HOST = env('EMAIL_HOST')
+# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '21stfloordev@gmail.com'
+EMAIL_HOST_PASSWORD = 'fuuiyivhsndlgygt'

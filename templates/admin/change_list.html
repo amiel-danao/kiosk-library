@@ -58,6 +58,14 @@
 {% endif %}
 
 {% block content %}
+{% for message in messages %}
+
+<div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div>{{ message }}</div>
+</div>
+{% endfor %}
+
     <div class="table-settings mb-4">
         <div class="row align-items-center justify-content-between">
             <div class="col col-md-8 col-lg-3 col-xl-8">
@@ -71,23 +79,76 @@
                     
                     <div class="modal" tabindex="-1" id="qrScanModal">
                         <div class="modal-dialog">
-                          <div class="modal-content">
+                        <form class="form" method="post" action="{{ scan.url }}">
+                            {% csrf_token %}
+                            <div class="modal-content">                            
+                            
                             <div class="modal-header">
-                              <h5 class="modal-title">{{ scan.modal_title|safe  }}</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                
+                                    <h5 class="modal-title">{{ scan.modal_title|safe  }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    
+                                
                             </div>
                             <div class="modal-body">
                               <div id="reader" width="600px"></div>
-                              {{ scan_form|crispy }}
+                              {% if scan_out_form %}
+                                <label for="id_book_title">Book Instance</label>
+                                <input type="text" id="id_book_title" class="form-control-plaintext" name="book_title" readonly>
+                                <input type="text" id="id_book" name="book" hidden required>
+
+                                <label for="id_borrower">Borrower</label>
+                                <input type="text" id="id_borrower" name="borrower" required>
+                                {{ scan_out_form.return_date|as_crispy_field }}
+                              {% endif %}
+
+                              {% if scan_in_form %}
+                                <label for="id_book_title">Book Instance</label>
+                                <input type="text" id="id_book_title" class="form-control-plaintext" name="book_title" readonly>
+                                <input type="text" id="id_book" name="book" hidden required>
+
+                                <!-- <label for="id_borrower">Borrower</label> -->
+                                <!-- <input type="text" hidden id="id_borrower" class="form-control-plaintext" name="borrower"> -->
+                              {% endif %}
+
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                              <button type="button" class="btn btn-primary">{{ scan.modal_accept_text|safe  }}</button>
+                              <button type="submit" class="btn btn-primary">{{ scan.modal_accept_text|safe  }}</button>
                             </div>
                           </div>
+                        </form>
                         </div>
                     </div>
                 {% endif %}
+
+                <!-- {% if filter %}
+                <div>
+                    <button type="button" class="btn btn-primary btn-inline mb-1" data-bs-toggle="modal" data-bs-target="#filterModal">
+                        Filter <i class="bi bi-search"></i>
+                    </button>
+                </div>
+                <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form action="" method="get" class="form form-inline mb-2">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="filterModalLabel">Filter</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    {% bootstrap_form filter.form  %}
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Filter <i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+                {% endif %} -->
 
                 {% if cl.has_filters %}
                 <div>
@@ -95,7 +156,6 @@
                         Filter <i class="bi bi-search"></i>
                     </button>
                 </div>
-                    <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <form action="" method="get" class="form form-inline mb-2">
@@ -169,6 +229,12 @@
     </div>
 {% endblock %}
 {% block extrascript %}
+<script type="text/javascript">
+    var opts = {
+        minDate: "today"
+    };
+    $(".restricted_today_date").flatpickr(opts);
+</script>
 {% if scan %}
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script>
@@ -181,18 +247,28 @@
 
         function onScanSuccess(decodedText, decodedResult) {
             // handle the scanned code as you like, for example:
-            console.log(`Code matched = ${decodedText}`, decodedResult);
+            // console.log(`Code matched = ${decodedText}`, decodedResult);
             let books = JSON.parse(decodedText);
             if (books.length == 0)
             {
                 alert('Invalid QR code!');
                 return;
             }
-            let book = books[0];            
-            console.log(book);
+            let book_instance = books[0];            
+            console.log(book_instance);
 
-            if (book.hasOwnProperty('pk')){
-                selectElement('id_book', book.pk);
+            if (book_instance.hasOwnProperty('pk')){
+                selectElement('id_book', book_instance.pk);
+
+                if (books.length > 1){
+                    let book = books[1];
+                    
+                    console.log(book);
+                    if (book.hasOwnProperty('fields')){
+                        selectElement('id_book_title', book['fields'].title);
+                        console.log('has title');
+                    }
+                }
             }
             else{
                 alert('Invalid QR code!');
