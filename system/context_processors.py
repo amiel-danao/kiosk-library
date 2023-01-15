@@ -3,6 +3,8 @@ import datetime
 from django.utils import timezone
 from django.utils.timezone import get_current_timezone
 
+from system.models import Student
+
 
 OPENING_HOUR = 9
 CLOSING_HOUR = 17
@@ -19,8 +21,19 @@ def global_context(request):
         'app_location': '',
         'app_contact_no': '0995-473-4825',
         'today': get_correct_today(),
-        'min_time': get_correct_today(format='%I:%M')
+        'min_time': get_correct_today(format='%I:%M'),
+        'user_id': getUserId(request)
     }
+
+
+def getUserId(request):
+    if request.user.is_authenticated:
+        try:
+            student = Student.objects.get(email=request.user.email)
+        except Student.DoesNotExist:
+            return None
+        return student.id
+    return None
 
 
 def get_correct_today(date=None, format=SCHEDULE_DATEFORMAT):

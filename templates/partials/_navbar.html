@@ -17,12 +17,14 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'system:index' %}">Home</a>
         </li>
+        {% if user_id %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
+          <a class="nav-link" href="{% url 'system:student_profile' pk=user_id %}">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Borrowed Books</a>
+          <a class="nav-link" href="{% url 'system:student_borrowed_books' pk=user_id %}">Borrowed Books</a>
         </li>
+        {% endif %}
       </ul>
       {% endif %}
 

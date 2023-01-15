@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
 from django.shortcuts import render,redirect
 from django.urls import reverse
@@ -8,16 +9,17 @@ from django.contrib.auth import logout as authlogout
 from django.contrib.auth.decorators import login_required as login_required
 from django.contrib.auth import login
 from django.urls import reverse, reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django_tables2 import SingleTableView
 from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
-from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm
-from system.models import Book, BookInstance, CustomUser, OutgoingTransaction, Student
+from system.admin import OutgoingTransactionAdmin
+from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, StudentProfileForm
+from system.models import Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Student
 from django_tables2.config import RequestConfig
-from system.filters import BookInstanceFilter
-from system.tables import BookInstanceTable
+from system.filters import BookInstanceFilter, OutgoingTransactionFilter
+from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
 from django.shortcuts import render, redirect
@@ -118,16 +120,22 @@ def create_incoming(request):
         form = IncomingTransactionForm(request.POST)
         if form.is_valid():
             # create a new `Band` and save it to the db
-            incoming = form.save()
+            incoming = form.save(commit=False)
 
+            if incoming.book.status == 'a':
+                messages.error(request, f'This book {incoming.book.book.title} was already returned!')
+                return HttpResponseRedirect(reverse_lazy('admin:system_incomingtransaction_changelist'))
             incoming.book.status = 'a'
             
 
             id = request.POST.get('book', None)
-            outgoing = OutgoingTransaction.objects.filter(id=id).latest()
+            outgoing = OutgoingTransaction.objects.filter(book__id=id).latest('date_borrowed')
             incoming.borrower = outgoing.borrower
 
             incoming.book.save()
+            incoming.save()
+
+            # IncomingTransaction.objects.create(book=incoming.book, borrower=outgoing.borrower)
             # redirect to the detail page of the band we just created
             # we can provide the url pattern arguments as arguments to redirect function
             return redirect('admin:system_incomingtransaction_change', incoming.id)
@@ -222,3 +230,45 @@ def logout_view(request):
     authlogout(request)
 
     return redirect('system:login')
+
+
+class StudentProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Student
+    form_class = StudentProfileForm
+    template_name = 'system/profile.html'
+    success_url = reverse_lazy('system:student_profile', )
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Profile updated successfully.')
+        return super().form_valid(form)
+
+
+    def get_success_url(self):
+        return reverse('system:student_profile', kwargs={'pk': self.object.id})
+
+
+class StudentBorrowedListView(LoginRequiredMixin, SingleTableView, FilterView):
+    model = OutgoingTransaction
+    table_class = OutgoingTransactionTable
+    template_name = 'system/student_borrowed_books.html'
+    filterset_class = OutgoingTransactionFilter
+    table_pagination = {
+        'per_page': 5,
+    }
+    strict=False
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs.filter(borrower__email=self.request.user.email)
+        return qs
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(StudentBorrowedListView, self).get_context_data(**kwargs)
+    #     species=self.get_queryset()
+    #     f = self.filterset_class(self.request.GET, queryset=species)
+    #     context['filter'] = f
+    #     table = self.table_class(f.qs)
+    #     RequestConfig(self.request).configure(table)
+    #     context['table'] = table
+
+        return context

@@ -25,7 +25,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    readonly_fields = ('id', 'borrow_count')
+    readonly_fields = ('id', 'book', 'borrow_count')
     fields = ('book', 'status', "borrow_count", 'location')
     list_display = ('book', 'status', 'borrower', "return_date", 'borrow_count', 'qr', )
     list_filter = ('book__genre', 'book__classification', 'status')
@@ -72,6 +72,9 @@ class OutgoingTransactionAdmin(admin.ModelAdmin):
     fields = ('book', 'borrower', 'date_borrowed', 'return_date')
     list_display = ('book', 'borrower', 'date_borrowed', 'return_date')
 
+    def has_add_permission(self, request):
+        return False
+
     def changelist_view(self, request, extra_context=None):
         scan_form = OutgoingTransactionForm()
         
@@ -93,6 +96,8 @@ class IncomingTransactionAdmin(admin.ModelAdmin):
     fields = ('book', 'borrower', 'date_returned')
     list_display = ('book', 'borrower', 'date_returned')
 
+    def has_add_permission(self, request):
+        return False
 
     def changelist_view(self, request, extra_context=None):
         scan_form = IncomingTransactionForm()
@@ -110,6 +115,7 @@ class IncomingTransactionAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
+    readonly_fields = ('email', )
     list_display = ('email', 'school_id', 'first_name', 'last_name')
 
 @admin.register(Book)

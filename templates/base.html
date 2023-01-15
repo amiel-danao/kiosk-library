@@ -35,6 +35,12 @@
     <body>
         <main style="background-image:url('{% static "admin_volt/assets/img/illustrations/signin_bg.jpg" %}');">
             {% include 'partials/_navbar.html' %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div>{{ message }}</div>
+            </div>
+            {% endfor %}
             {% block content %} {% endblock %}
             
         </main>

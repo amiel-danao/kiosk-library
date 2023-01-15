@@ -169,6 +169,9 @@ class Transaction(models.Model):
 class IncomingTransaction(Transaction):
     date_returned = models.DateField(default=timezone.now, blank=True)
     
+    def __str__(self) -> str:
+        return f'{self.book.book.title} - {self.borrower}'
+    
 
 class OutgoingTransaction(Transaction):
     date_borrowed = models.DateField(default=timezone.now, blank=True)

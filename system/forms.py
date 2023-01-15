@@ -93,6 +93,18 @@ class RegisterForm(UserCreationForm):
             user.save()
         return user
 
+class StudentProfileForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(StudentProfileForm, self).__init__(*args, **kwargs)
+        self.fields['school_id'].disabled = True
+        self.fields['email'].disabled = True
+
+    class Meta:
+        model = Student
+        fields = '__all__'
+        exclude = ('date_returned', 'borrower')
+
 
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(label='Email', required=True)

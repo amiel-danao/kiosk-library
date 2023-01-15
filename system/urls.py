@@ -14,6 +14,8 @@ urlpatterns = [
     path('accounts/register/', views.register_view, name='register'),
     path('accounts/verify/<str:id>/', views.verify_account_view, name='create'),
     path('accounts/send_verification/', views.send_verification, name='send_verification'),
+    path('accounts/profile/<int:pk>/', views.StudentProfileUpdateView.as_view(), name='student_profile'),
+    path('student/books/<int:pk>/', views.StudentBorrowedListView.as_view(), name='student_borrowed_books'),
     path('outgoingtransaction/create/', views.create_outgoing, name='outgoing_create'),
     path('incomingtransaction/create/', views.create_incoming, name='incoming_create'),
 ]

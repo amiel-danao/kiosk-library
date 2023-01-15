@@ -27,3 +27,7 @@ class BookInstanceFilter(django_filters.FilterSet):
     class Meta:
         model = BookInstance
         fields = ['book__author', 'book__isbn', 'book__genre', 'book__classification', "book__publish_date", 'location', 'status']
+
+
+class OutgoingTransactionFilter(django_filters.FilterSet):
+    pass
