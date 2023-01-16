@@ -25,7 +25,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    readonly_fields = ('id', 'book', 'borrow_count')
+    readonly_fields = ('id', 'borrow_count')
     fields = ('book', 'status', "borrow_count", 'location')
     list_display = ('book', 'status', 'borrower', "return_date", 'borrow_count', 'qr', )
     list_filter = ('book__genre', 'book__classification', 'status')

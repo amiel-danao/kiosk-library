@@ -257,7 +257,13 @@ class StudentBorrowedListView(LoginRequiredMixin, SingleTableView, FilterView):
     }
     strict=False
 
+    def render_to_response(self, context):
+        if self.request.user.is_superuser:
+            return redirect('system:index')
+        return super().render_to_response(context)
+
     def get_queryset(self):
+        
         qs = super().get_queryset()
         qs.filter(borrower__email=self.request.user.email)
         return qs

@@ -14,17 +14,18 @@ class BookInstanceTable(tables.Table):
 
 
 class OutgoingTransactionTable(tables.Table):
-    status = tables.Column(empty_values=())
+    # status = tables.Column(empty_values=())
 
     class Meta:
         model = OutgoingTransaction
         template_name = "django_tables2/bootstrap5.html"
-        fields = ("book__book__title", "status", "date_borrowed", "return_date")
+        fields = ("book__book__title", "date_borrowed", "return_date")
         empty_text = _("No books borrowed.")
         attrs = {'class': 'table table-hover shadow records-table'}
 
-    def render_status(self, value, record):
-        book = record.book
-        if book.status == 'o':
-            return 'On hand'
-        return 'Returned'
+    # def render_status(self, value, record):
+    #     if record:
+    #         book = record.book
+    #         if book.status == 'o':
+    #             return 'On hand'
+    #     return 'Returned'
