@@ -96,21 +96,25 @@ class OutgoingCreateView(CreateView):
 def create_outgoing(request):
     if request.method == 'POST':
         form = OutgoingTransactionForm(request.POST)
-        if form.is_valid():
-            # create a new `Band` and save it to the db
-            outgoing = form.save()
+        try:
+            if form.is_valid():
+                # create a new `Band` and save it to the db
+                outgoing = form.save()
 
-            outgoing.book.status = 'o'
-            outgoing.book.borrow_count += 1
-            outgoing.book.save()
-            # redirect to the detail page of the band we just created
-            # we can provide the url pattern arguments as arguments to redirect function
-            return redirect('admin:system_outgoingtransaction_change', outgoing.id)
-        else:
-            # for field in form.errors:
-            #     field_value = request.POST.get(field)
-            #     for error in field:
-            messages.error(request, form.errors)
+                outgoing.book.status = 'o'
+                outgoing.book.borrow_count += 1
+                outgoing.book.save()
+                # redirect to the detail page of the band we just created
+                # we can provide the url pattern arguments as arguments to redirect function
+                return redirect('admin:system_outgoingtransaction_change', outgoing.id)
+            else:
+                # for field in form.errors:
+                #     field_value = request.POST.get(field)
+                #     for error in field:
+                messages.error(request, form.errors)
+                return HttpResponseRedirect(reverse_lazy('admin:system_outgoingtransaction_changelist'))
+        except BookInstance.DoesNotExist as error:
+            messages.error(request, error)
             return HttpResponseRedirect(reverse_lazy('admin:system_outgoingtransaction_changelist'))
     return HttpResponseBadRequest()
     # return HttpResponseRedirect(reverse_lazy('admin:system_outgoingtransaction_changelist'))
