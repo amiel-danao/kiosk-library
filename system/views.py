@@ -269,7 +269,7 @@ class StudentBorrowedListView(LoginRequiredMixin, SingleTableView, FilterView):
     def get_queryset(self):
         
         qs = super().get_queryset()
-        qs.filter(borrower__email=self.request.user.email)
+        qs = qs.filter(borrower__email=self.request.user.email)
         return qs
 
     # def get_context_data(self, **kwargs):
