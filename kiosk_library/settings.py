@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,9 +38,11 @@ ALLOWED_HOSTS = ["127.0.0.1", "kiosk_library.pythonanywhere.com"]
 INSTALLED_APPS = [
     
     # 'jazzmin',
+    'dal',
+    'dal_select2',
     'admin_volt.apps.AdminVoltConfig',
     # 'django.contrib.admin',
-    'kiosk_library.apps.MyAdminConfig',    
+    'kiosk_library.apps.MyAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -181,5 +187,10 @@ EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = '21stfloordev@gmail.com'
-EMAIL_HOST_PASSWORD = 'fuuiyivhsndlgygt'
+EMAIL_HOST_USER = 'marknicobornalo@gmail.com'
+EMAIL_HOST_PASSWORD = 'buqwofnjgefuatxl'
+OLD_EMAIL_HOST_PASSWORD = 'fuuiyivhsndlgygt'
+
+TWILLIO_VIRTUAL_NO = os.getenv('TWILLIO_VIRTUAL_NO')
+TWILLIO_ACCOUNT_SID = os.getenv('TWILLIO_ACCOUNT_SID')
+TWILLIO_AUTH_TOKEN = os.getenv('TWILLIO_AUTH_TOKEN')

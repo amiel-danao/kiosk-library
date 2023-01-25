@@ -10,7 +10,7 @@ OPENING_HOUR = 9
 CLOSING_HOUR = 17
 SCHEDULE_DATEFORMAT = "%Y-%m-%d, %I:%M %p"
 SCHEDULE_DATEFORMAT_24H = "%Y-%m-%d, %H:%M"
-
+MOBILE_NO_REGEX = '^(09)\d{9}$'
 
 def global_context(request):
     return {
@@ -22,7 +22,8 @@ def global_context(request):
         'app_contact_no': '0995-473-4825',
         'today': get_correct_today(),
         'min_time': get_correct_today(format='%I:%M'),
-        'user_id': getUserId(request)
+        'user_id': getUserId(request),
+        'mobile_no_regex': MOBILE_NO_REGEX
     }
 
 

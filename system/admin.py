@@ -3,7 +3,7 @@ from django.apps import apps
 from django.contrib.auth.models import Group
 from system.filters import BookFilter
 from system.forms import BookInstanceForm, IncomingTransactionForm, OutgoingTransactionForm
-from system.models import Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Author, Student
+from system.models import SMS, Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Author, Student
 from django.contrib.admin.views.main import ChangeList
 from django.urls import reverse
 from django.utils.html import format_html
@@ -11,7 +11,7 @@ from django.utils import timezone
 
 
 admin.site.unregister(Group)
-exempted_models = (Group, )
+exempted_models = (Group, SMS)
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -152,13 +152,13 @@ class BookAdmin(admin.ModelAdmin):
 app_config = apps.get_app_config('system')
 models = app_config.get_models()
 
-for model in models:
-    if model.__class__ in exempted_models:
-        continue
-    try:
-        admin.site.register(model)
-    except admin.sites.AlreadyRegistered:
-        pass
+# for model in models:
+#     if model.__class__ in exempted_models:
+#         continue
+#     try:
+#         admin.site.register(model)
+#     except admin.sites.AlreadyRegistered:
+#         pass
 
 admin.site.site_header = "Kiosk Book Library"
 admin.site.site_title = 'NCST Kiosk Book Library System'

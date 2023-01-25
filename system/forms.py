@@ -1,8 +1,11 @@
+from dal import autocomplete
 from django.utils.translation import gettext as _
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import CustomUser
+
+from system.context_processors import MOBILE_NO_REGEX
+from .models import SMS, CustomUser
 from django.core.exceptions import ValidationError
 from django import forms
 from kiosk_library.managers import CustomUserManager
@@ -95,9 +98,18 @@ class RegisterForm(UserCreationForm):
 
 class StudentProfileForm(forms.ModelForm):
 
+    school_id = forms.RegexField(
+        required=True,
+        regex='^(?:\d{4}-\d{5})$',
+        error_messages = {'invalid': _("Please input a valid Student Id No pattern: YYYY-xxxxx")}, label='Student Id No.')
+
+    mobile_no = forms.RegexField(
+        required=True,
+        regex=MOBILE_NO_REGEX,
+        error_messages = {'invalid': _("Please input a valid mobile number")}, label='Mobile No.')
+
     def __init__(self, *args, **kwargs):
         super(StudentProfileForm, self).__init__(*args, **kwargs)
-        self.fields['school_id'].disabled = True
         self.fields['email'].disabled = True
 
     class Meta:
@@ -115,3 +127,17 @@ class LoginForm(AuthenticationForm):
                 _("Please confirm your email so you can log in."),
                 code='inactive',
             )
+
+MYCHOICES = ((1,1), (2,2))
+
+class SMSForm(forms.ModelForm):
+    # recepients = forms.Field(widget=autocomplete.ListSelect2(url='system:student-autocomplete'))
+    message = forms.CharField(widget=forms.Textarea(attrs={"rows":6, "maxlength":150}), required=True)
+    recepients = forms.CharField(widget=forms.TextInput(attrs={"hidden":""}), required=False)
+
+    class Meta:
+        model = SMS
+        exclude = ()
+        widgets = {
+            'students': autocomplete.ModelSelect2Multiple(url='system:student-autocomplete')
+        }

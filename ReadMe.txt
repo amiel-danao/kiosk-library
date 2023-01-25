@@ -21,7 +21,27 @@ Download and install XAMPP https://sourceforge.net/projects/xampp/files/XAMPP%20
 
 
 Setup Web Source code
+Open up Vscode
+
+Press Ctrl + K Ctrl + O to open the source code folder
+
+Press Ctrl + Shift + x to open up Extensions
+In the search extension box type in: Python, then install it
+
+Press Ctrl + Shift + P to open up command pallete
+In the search box Type in : Terminal: Select Default Profile
+Select the first option : Command Prompt
+
+Press Ctrl + Shift + P to open up command pallete
+
+In the search box Type in : Python: Create Environment
+Select the first option : Venv
+Wait for the process to finish (this will install all the dependencies indicated in requirements.txt)
+
+
 python --version //To check if the python was properly installed
+
+
 python -m venv venv //Creates a virtual environment folder,
 cd venv/Scripts -> Enter
 activate -> Enter

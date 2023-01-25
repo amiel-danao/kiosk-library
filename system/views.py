@@ -1,3 +1,12 @@
+
+from django.conf import settings
+from twilio.base.exceptions import TwilioRestException
+from twilio.rest import Client
+from django.contrib.auth.signals import user_logged_in
+from dal import autocomplete
+from django.db.models import Q
+from django.contrib import admin
+import vonage
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
 from django.shortcuts import render,redirect
@@ -10,12 +19,12 @@ from django.contrib.auth.decorators import login_required as login_required
 from django.contrib.auth import login
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, Http404
 from django_tables2 import SingleTableView
 from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
 from system.admin import OutgoingTransactionAdmin
-from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, StudentProfileForm
+from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
 from system.models import Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Student
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter
@@ -77,6 +86,7 @@ class BookInstanceListView(SingleTableView, FilterView):
         RequestConfig(self.request).configure(table)
         context['table'] = table
 
+        
         return context
 
 
@@ -193,6 +203,7 @@ class CustomLoginView(auth_views.LoginView): # 1. <--- note: this is a class-bas
         return url or reverse_lazy('system:index')
 
 def send_verification_email(email, link):
+    
     send_mail(
         'NCST Kiosk - Student Account Registration',
         f'To verify your account, please follow this link: {link} \n Please disregard this email if you do not create this account!',
@@ -213,7 +224,8 @@ def register_view(request):
             Student.objects.create(email=user.email, 
                                     first_name=request.POST.get('first_name', ''),
                                     middle_name=request.POST.get('middle_name', ''),
-                                    last_name=request.POST.get('last_name', ''))
+                                    last_name=request.POST.get('last_name', ''),
+                                    mobile_no=request.POST.get('mobile_no'))
             # login(request, user)
             try:
                 domain = request.get_host()
@@ -235,8 +247,21 @@ def logout_view(request):
 
     return redirect('system:login')
 
+class StudentsOnlyView(object):
 
-class StudentProfileUpdateView(LoginRequiredMixin, UpdateView):
+    def has_permissions(self):
+        if self.request.user.is_superuser:
+            return False
+        return True
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.has_permissions():
+            raise Http404('You do not have permission.')
+        return super(StudentsOnlyView, self).dispatch(
+            request, *args, **kwargs)
+
+
+class StudentProfileUpdateView(LoginRequiredMixin, StudentsOnlyView, UpdateView):
     model = Student
     form_class = StudentProfileForm
     template_name = 'system/profile.html'
@@ -251,7 +276,7 @@ class StudentProfileUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('system:student_profile', kwargs={'pk': self.object.id})
 
 
-class StudentBorrowedListView(LoginRequiredMixin, SingleTableView, FilterView):
+class StudentBorrowedListView(LoginRequiredMixin, StudentsOnlyView, SingleTableView, FilterView):
     model = OutgoingTransaction
     table_class = OutgoingTransactionTable
     template_name = 'system/student_borrowed_books.html'
@@ -264,6 +289,8 @@ class StudentBorrowedListView(LoginRequiredMixin, SingleTableView, FilterView):
     def render_to_response(self, context):
         if self.request.user.is_superuser:
             return redirect('system:index')
+
+        
         return super().render_to_response(context)
 
     def get_queryset(self):
@@ -272,13 +299,93 @@ class StudentBorrowedListView(LoginRequiredMixin, SingleTableView, FilterView):
         qs = qs.filter(borrower__email=self.request.user.email)
         return qs
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(StudentBorrowedListView, self).get_context_data(**kwargs)
-    #     species=self.get_queryset()
-    #     f = self.filterset_class(self.request.GET, queryset=species)
-    #     context['filter'] = f
-    #     table = self.table_class(f.qs)
-    #     RequestConfig(self.request).configure(table)
-    #     context['table'] = table
 
-        return context
+def sms_view(request):
+    context = {}
+
+    context['form'] = SMSForm()
+
+
+    return render(request, 'admin/sms_notification.html', context)
+
+
+def send_sms(request):
+    context = {}
+    if request.method == "POST":
+        context['form'] = SMSForm(request.POST)
+        # client = vonage.Client(key="282f39f9", secret="wCG7JXwLDPlVW9Rm")
+        # sms = vonage.Sms(client)
+
+        message = request.POST.get('message', 'No message')
+        
+        id_string = request.POST.get('recepients', '')
+
+        ids = id_string.split(',')
+        recepients = Student.objects.filter(school_id__in=ids)
+
+        client = Client(settings.TWILLIO_ACCOUNT_SID, settings.TWILLIO_AUTH_TOKEN)
+
+        for recepient in recepients:
+            mobile_no = recepient.mobile_no.lstrip('0')
+            if not mobile_no:
+                messages.error(request, f'mobile no. of student {recepient.school_id} is invalid')
+                continue
+            # responseData = sms.send_message(
+            #     {
+            #         "from": 'Vonage APIs',
+            #         "to": f'63{mobile_no}',
+            #         "text": f'{admin.site.site_title} \n {message}\n',
+            #     }
+            # )
+
+            try:
+                message = client.messages.create(
+                    body=f'\n{admin.site.site_title} \n {message}\n',
+                    from_=settings.TWILLIO_VIRTUAL_NO,
+                    to=f'+63{mobile_no}'
+                )
+                messages.success(request, f"Message sent successfully. {mobile_no}")
+            except TwilioRestException as responseData:
+                messages.error(request, f"Message failed for {mobile_no} with error: {responseData}")
+            
+
+            # if responseData["messages"][0]["status"] == "0":
+            #     messages.success(request, f"Message sent successfully. {mobile_no}")
+            # else:
+            #     messages.error(request, f"Message failed for {mobile_no} with error: {responseData['messages'][0]['error-text']}")
+
+        return redirect('system:sms')
+
+    context['form'] = SMSForm()
+    return redirect('system:sms')
+
+    
+
+
+class StudentAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        if not self.request.user.is_authenticated:
+            return Student.objects.none()
+
+        qs = Student.objects.filter(~Q(mobile_no=''))
+
+        if self.q:
+            qs = qs.filter(school_id__istartswith=self.q)
+
+        return qs
+
+
+
+
+
+def create_non_existing_student_profile(sender, user, request, **kwargs):
+    if not user.is_superuser:
+        existing_profile = Student.objects.filter(email=user.email).first()
+        if existing_profile is None:
+            Student.objects.create(email=user.email, 
+                                    first_name=user.email.split('@')[0])
+
+user_logged_in.connect(create_non_existing_student_profile)
+
+

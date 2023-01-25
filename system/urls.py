@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from system.forms import LoginForm
 from system import views
 from django.contrib.auth import views as auth_views
@@ -18,4 +18,11 @@ urlpatterns = [
     path('student/books/<int:pk>/', views.StudentBorrowedListView.as_view(), name='student_borrowed_books'),
     path('outgoingtransaction/create/', views.create_outgoing, name='outgoing_create'),
     path('incomingtransaction/create/', views.create_incoming, name='incoming_create'),
+    path('admin/sms/', views.sms_view, name='sms'),
+    re_path(
+        r'^student-autocomplete/$',
+        views.StudentAutocomplete.as_view(),
+        name='student-autocomplete',
+    ),
+    path('admin/send_sms/', views.send_sms, name='send_sms'),
 ]

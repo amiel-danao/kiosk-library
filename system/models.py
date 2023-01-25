@@ -84,12 +84,30 @@ class Book(CatalogueMixin):
     class JSONAPIMeta:
         resource_name = 'books'
 
+def generate_school_id():
+    
+    try_student_id = get_next_school_id()
+    while(Student.objects.filter(school_id=try_student_id).first() is not None):
+        try_student_id = get_next_school_id()
+    return try_student_id
+
+def get_next_school_id():
+    year = timezone.now().year
+    latest_student = Student.objects.order_by('-pk')[0]
+    current_index = 0
+    if latest_student is not None:
+        current_index = int(latest_student.school_id.split('-')[1])
+    current_index += 1
+
+    return f'{year}-{str(current_index).zfill(5)}'
+
 class Student(models.Model):
-    school_id = models.CharField(max_length=15, blank=True)
+    school_id = models.CharField(max_length=10, blank=False, unique=True, default=generate_school_id)
     email = models.EmailField(unique=True, blank=False, default='')
     first_name = models.CharField(blank=False, default='', max_length=50)
     middle_name = models.CharField(blank=True, max_length=50)
     last_name = models.CharField(blank=True, max_length=50)
+    mobile_no = models.CharField(blank=True, max_length=11)
 
     def __str__(self):
         return self.school_id
@@ -179,3 +197,7 @@ class OutgoingTransaction(Transaction):
 
     def __str__(self) -> str:
         return f'{self.book.book.title} - {self.borrower}'
+
+class SMS(models.Model):
+    students = models.ManyToManyField(Student)
+    message = models.CharField(max_length=150, blank=False)

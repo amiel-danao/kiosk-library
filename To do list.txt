@@ -1,7 +1,11 @@
 Main App
 Transaction Page
+[x] SMS editable by admin <-- 
+[ ] generate daily report <-- dashboard info about transactions
+[ ] auto sms- during beginning of transaction and before return date of book
+
 [x] Admin only login
-[  ] Status of book(available, borrowed)
+[X] Status of book(available, borrowed)
 [  ] Physical status of book, before/after borrowed
 [  ] Quantity of books
 [  ] Searching of books by Category
@@ -10,10 +14,15 @@ Transaction Page
 [  ] Scanning during borrowing process 
 
 User App
-[  ] Login/Register Page
+[X] Login/Register Page
 [X] Email verification during registration, ncst email only
 [X] Reminder notification about borrowed book
-[  ] Student Profile Page
-[  ] Book Search Page
-[  ] List of borrowed books Page
+[X] Student Profile Page
+[X] Book Search Page
+[X] List of borrowed books Page
+[ ] phone number field required
+
+
+
+Mobile
 [  ] Navigation Drawer (to navigate to diffrent page)
