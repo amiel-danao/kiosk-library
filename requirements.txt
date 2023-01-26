@@ -34,6 +34,7 @@ pycparser==2.21
 pydantic==1.10.4
 PyJWT==2.6.0
 pyparsing==3.0.9
+python-dotenv==0.21.1
 python-stdnum==1.18
 pytz==2022.6
 qrcode==7.3.1
@@ -43,6 +44,7 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.3
 textmagic==2.0.3
 tomli==2.0.1
+twilio==7.16.1
 typing_extensions==4.4.0
 tzdata==2022.6
 urllib3==1.26.14
