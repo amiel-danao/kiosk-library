@@ -1,11 +1,16 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from system.forms import LoginForm
 from system import views
 from django.contrib.auth import views as auth_views
+from rest_framework import routers
 
 app_name = 'system'
 
+router = routers.DefaultRouter()
+router.register(r'student', views.StudentViewSet)
+
 urlpatterns = [
+    path('api/', include((router.urls, 'app_name'), namespace='instance_name')),
     path('', views.BookInstanceListView.as_view(), name='index'),
     path('qr/<str:pk>/', views.show_qr, name="show-qr"),
     path('accounts/login/',
@@ -25,5 +30,6 @@ urlpatterns = [
         name='student-autocomplete',
     ),
     path('admin/send_sms/', views.send_sms, name='send_sms'),
-    path('api-token-auth/', views.CustomAuthToken.as_view())
+    path('api-token-auth/', views.CustomAuthToken.as_view()),
+    # path('api/', include((router.urls, 'app_name'), namespace='instance_name')),
 ]

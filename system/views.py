@@ -1,4 +1,4 @@
-
+from rest_framework import generics, mixins, viewsets
 from django.conf import settings
 from twilio.base.exceptions import TwilioRestException
 from twilio.rest import Client
@@ -28,6 +28,7 @@ from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransaction
 from system.models import Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Student
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter
+from system.serializers import StudentSerializer
 from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
@@ -407,3 +408,7 @@ class CustomAuthToken(ObtainAuthToken):
             'user_id': user.pk,
             'email': user.email
         })
+    
+class StudentViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
