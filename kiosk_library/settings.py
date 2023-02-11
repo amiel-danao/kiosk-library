@@ -115,7 +115,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
-            "NAME": "kiosk_library$kiosk_library",
+            "NAME": "ncstkiosklibrary$kiosk_library",
             "USER": "ncstkiosklibrary",
             "PASSWORD": "notCommonPassword123$",
             "HOST": "ncstkiosklibrary.mysql.pythonanywhere-services.com",
