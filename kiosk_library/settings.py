@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-fpqly0#c5whun%#*l%j45e)tbc^t3%p+8fc11r#o@6pbi43j4z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "kiosk_library.pythonanywhere.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "ncstkiosklibrary.pythonanywhere.com"]
 
 
 # Application definition
