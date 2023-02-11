@@ -3,14 +3,14 @@ from django.apps import apps
 from django.contrib.auth.models import Group
 from system.filters import BookFilter
 from system.forms import BookInstanceForm, IncomingTransactionForm, OutgoingTransactionForm
-from system.models import SMS, Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Author, Student
+from system.models import SMS, Book, BookInstance, CustomUser, Genre, IncomingTransaction, OutgoingTransaction, Author, Student
 from django.contrib.admin.views.main import ChangeList
 from django.urls import reverse
 from django.utils.html import format_html
-from django.utils import timezone
+from rest_framework.authtoken.models import Token
 
 
-admin.site.unregister(Group)
+admin.site.unregister((Group,))
 exempted_models = (Group, SMS)
 
 @admin.register(Author)
@@ -147,6 +147,9 @@ class BookAdmin(admin.ModelAdmin):
     def classification_number(self, obj):
         return str(obj.classification).zfill(3)
 
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    pass
 
 
 app_config = apps.get_app_config('system')

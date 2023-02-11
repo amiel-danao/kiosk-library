@@ -112,6 +112,10 @@ class Student(models.Model):
     def __str__(self):
         return self.school_id
 
+class BookStatus(models.IntegerChoices):
+    ON_LOAN = 0, "On loan"
+    AVAILABLE = 1, "Available"
+
 class BookInstance(models.Model):
     """
     Model representing a specific copy of a book
@@ -127,14 +131,7 @@ class BookInstance(models.Model):
         related_query_name='book'
     )
 
-    LOAN_STATUS = (
-        ('o', 'On loan'),
-        ('a', 'Available'),
-    )
-
-    status = models.CharField(
-        max_length=1, choices=LOAN_STATUS, blank=True, default='a'
-    )
+    status = models.IntegerField(choices=BookStatus.choices, default=BookStatus.AVAILABLE)
 
     borrow_count = models.PositiveIntegerField(default=0)
 

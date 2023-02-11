@@ -25,10 +25,10 @@ from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
 from system.admin import OutgoingTransactionAdmin
 from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
-from system.models import Book, BookInstance, CustomUser, IncomingTransaction, OutgoingTransaction, Student
+from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Student
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter
-from system.serializers import StudentSerializer
+from system.serializers import BookInstanceSerializer, StudentSerializer
 from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
@@ -114,7 +114,7 @@ def create_outgoing(request):
                 # create a new `Band` and save it to the db
                 outgoing = form.save()
 
-                outgoing.book.status = 'o'
+                outgoing.book.status = BookStatus.ON_LOAN
                 outgoing.book.borrow_count += 1
                 outgoing.book.save()
                 # redirect to the detail page of the band we just created
@@ -139,10 +139,10 @@ def create_incoming(request):
             # create a new `Band` and save it to the db
             incoming = form.save(commit=False)
 
-            if incoming.book.status == 'a':
+            if incoming.book.status == BookStatus.AVAILABLE:
                 messages.error(request, f'This book {incoming.book.book.title} was already returned!')
                 return HttpResponseRedirect(reverse_lazy('admin:system_incomingtransaction_changelist'))
-            incoming.book.status = 'a'
+            incoming.book.status = BookStatus.AVAILABLE
             
 
             id = request.POST.get('book', None)
@@ -415,3 +415,7 @@ class StudentViewSet(viewsets.ModelViewSet):
     lookup_field = 'email'
     lookup_url_kwarg = 'email'
     lookup_value_regex = '[\w@.]+'
+
+class BookInstanceViewSet(viewsets.ModelViewSet):
+    queryset = BookInstance.objects.all()
+    serializer_class = BookInstanceSerializer

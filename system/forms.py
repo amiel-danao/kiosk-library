@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
 from system.context_processors import MOBILE_NO_REGEX
-from .models import SMS, CustomUser
+from .models import SMS, BookStatus, CustomUser
 from django.core.exceptions import ValidationError
 from django import forms
 from kiosk_library.managers import CustomUserManager
@@ -35,7 +35,7 @@ class OutgoingTransactionForm(forms.ModelForm):
 
         try:
             book = BookInstance.objects.get(id=data)
-            if book.status == 'o':
+            if book.status == BookStatus.ON_LOAN:
                 raise ValidationError(f'{book.book.title} is currently borrowed!')
             return book
         except Student.DoesNotExist as error:
