@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_bootstrap5',
     'rest_framework',
+    'rest_framework.authtoken',
     'phonenumbers',
     'django_tables2',
     'django_filters',

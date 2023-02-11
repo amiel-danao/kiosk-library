@@ -93,7 +93,7 @@ def generate_school_id():
 
 def get_next_school_id():
     year = timezone.now().year
-    latest_student = Student.objects.order_by('-pk')[0]
+    latest_student = Student.objects.order_by('-pk').first()
     current_index = 0
     if latest_student is not None:
         current_index = int(latest_student.school_id.split('-')[1])
