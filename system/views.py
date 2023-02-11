@@ -409,6 +409,9 @@ class CustomAuthToken(ObtainAuthToken):
             'email': user.email
         })
     
-class StudentViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin):
+class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    lookup_field = 'email'
+    lookup_url_kwarg = 'email'
+    lookup_value_regex = '[\w@.]+'
