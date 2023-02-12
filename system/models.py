@@ -209,3 +209,6 @@ class Reservations(models.Model):
     class Meta:
         verbose_name = 'Reservation'
         verbose_name_plural = 'Reservations'
+
+    def __str__(self) -> str:
+        return f'{self.student.school_id} - {self.book_instance.book.title}'
