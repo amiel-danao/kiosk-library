@@ -206,5 +206,6 @@ class Reservations(models.Model):
     book_instance = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
     date_reserved = models.DateField(auto_now_add=True)
 
-    # class Meta:
-    #     unique_together = ('student', 'book_instance')
+    class Meta:
+        verbose_name = 'Reservation'
+        verbose_name_plural = 'Reservations'
