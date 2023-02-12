@@ -153,6 +153,8 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Reservations)
 class ReservationAdmin(admin.ModelAdmin):
+    readonly_fields = ('student', 'book_instance')
+    list_display = ('student', 'book_instance', 'date_reserved',)
     
     def has_add_permission(self, request):
         return False

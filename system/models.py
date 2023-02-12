@@ -204,7 +204,7 @@ class SMS(models.Model):
 class Reservations(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
     book_instance = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
-    date_reserved = models.DateField(auto_now_add=True)
+    date_reserved = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'Reservation'
