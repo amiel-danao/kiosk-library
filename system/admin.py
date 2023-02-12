@@ -3,7 +3,7 @@ from django.apps import apps
 from django.contrib.auth.models import Group
 from system.filters import BookFilter
 from system.forms import BookInstanceForm, IncomingTransactionForm, OutgoingTransactionForm
-from system.models import SMS, Book, BookInstance, CustomUser, Genre, IncomingTransaction, OutgoingTransaction, Author, Student
+from system.models import SMS, Book, BookInstance, CustomUser, Genre, IncomingTransaction, OutgoingTransaction, Author, Reservations, Student
 from django.contrib.admin.views.main import ChangeList
 from django.urls import reverse
 from django.utils.html import format_html
@@ -150,6 +150,12 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Reservations)
+class ReservationAdmin(admin.ModelAdmin):
+    
+    def has_add_permission(self, request):
+        return False
 
 
 app_config = apps.get_app_config('system')
