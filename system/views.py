@@ -1,3 +1,4 @@
+import django_filters.rest_framework
 from rest_framework import generics, mixins, viewsets
 from django.conf import settings
 from twilio.base.exceptions import TwilioRestException
@@ -25,10 +26,10 @@ from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
 from system.admin import OutgoingTransactionAdmin
 from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
-from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Student
+from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter
-from system.serializers import BookInstanceSerializer, StudentSerializer
+from system.serializers import BookInstanceSerializer, ReservationsSerializer, StudentSerializer
 from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
@@ -412,10 +413,23 @@ class CustomAuthToken(ObtainAuthToken):
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    lookup_field = 'email'
-    lookup_url_kwarg = 'email'
-    lookup_value_regex = '[\w@.]+'
+    filterset_fields = ['email',]
+    # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    # lookup_field = 'email'
+    # lookup_url_kwarg = 'email'
+    # lookup_value_regex = '[\w@.]+'
 
 class BookInstanceViewSet(viewsets.ModelViewSet):
     queryset = BookInstance.objects.all()
     serializer_class = BookInstanceSerializer
+    filterset_fields = ['id',]
+    # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+
+class ReservationViewSet(viewsets.ModelViewSet):
+    queryset = Reservations.objects.all()
+    serializer_class = ReservationsSerializer
+    filterset_fields = ['student',]
+    # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    # lookup_field = 'student'
+    # lookup_url_kwarg = 'student'
+    # lookup_value_regex = '[\w@.]+'

@@ -198,3 +198,7 @@ OLD_EMAIL_HOST_PASSWORD = 'fuuiyivhsndlgygt'
 TWILLIO_VIRTUAL_NO = os.getenv('TWILLIO_VIRTUAL_NO')
 TWILLIO_ACCOUNT_SID = os.getenv('TWILLIO_ACCOUNT_SID')
 TWILLIO_AUTH_TOKEN = os.getenv('TWILLIO_AUTH_TOKEN')
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

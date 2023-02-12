@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from system.models import BookInstance, BookStatus, Genre, Student
+from system.models import BookInstance, BookStatus, Genre, Reservations, Student
 from django.db.models.functions import Concat
 from django.db.models import Value
 
@@ -53,3 +53,9 @@ class BookInstanceSerializer(serializers.ModelSerializer):
         # fields = '__all__'
         exclude = ('book',)
         depth = 1 
+
+    
+class ReservationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservations
+        fields = '__all__'

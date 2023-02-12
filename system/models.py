@@ -200,3 +200,11 @@ class OutgoingTransaction(Transaction):
 class SMS(models.Model):
     students = models.ManyToManyField(Student)
     message = models.CharField(max_length=150, blank=False)
+
+class Reservations(models.Model):
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    book_instance = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
+    date_reserved = models.DateField(auto_now_add=True)
+
+    # class Meta:
+    #     unique_together = ('student', 'book_instance')
