@@ -25,6 +25,7 @@ class BookInstanceSerializer(serializers.ModelSerializer):
     genre = serializers.SerializerMethodField()#GenreSerializer(source="book.genre", many=True, read_only=True)
     publish_date = serializers.DateField(source='book.publish_date')
     status = serializers.SerializerMethodField()
+    thumbnail = serializers.SerializerMethodField()
 
     def get_author(self, instance):
         return ','.join(list(instance.book.author.annotate(
@@ -37,6 +38,15 @@ class BookInstanceSerializer(serializers.ModelSerializer):
 
     def get_status(self, instance):
         return BookStatus(instance.status).label
+    
+    def get_thumbnail(self, instance):
+        request = self.context.get('request')
+        if instance.book.thumbnail and hasattr(instance.book.thumbnail, 'url'):
+            photo_url = instance.book.thumbnail.url
+            return request.build_absolute_uri(photo_url)
+        else:
+            return ''
+        
 
     class Meta:
         model = BookInstance

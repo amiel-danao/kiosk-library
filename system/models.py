@@ -73,6 +73,8 @@ class Book(CatalogueMixin):
     publish_date = models.DateField(null=True, blank=True)
     classification = models.PositiveIntegerField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(999)])
+    
+    thumbnail = models.ImageField(upload_to='book_thumbnails/', blank=True, null=True)
 
     def __str__(self):
         return self.title
