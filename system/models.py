@@ -2,9 +2,9 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from kiosk_library.managers import CustomUserManager
+from kiosk_library.managers import CustomUserManager, ReservationManager
 import uuid
-from datetime import date
+from datetime import date, timedelta
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from isbn_field import ISBNField
@@ -201,10 +201,18 @@ class SMS(models.Model):
     students = models.ManyToManyField(Student)
     message = models.CharField(max_length=150, blank=False)
 
+def reservation_expiry_date():
+    now = timezone.localtime(timezone.now())
+    now += timedelta(hours=1)
+    return now
+
 class Reservations(models.Model):
     student = models.OneToOneField(Student, on_delete=models.CASCADE)
     book_instance = models.ForeignKey(BookInstance, on_delete=models.CASCADE,)
     date_reserved = models.DateTimeField(auto_now_add=True)
+    expiry_date = models.DateTimeField(default=reservation_expiry_date, db_index=True)
+    
+    objects = ReservationManager()
 
     class Meta:
         verbose_name = 'Reservation'

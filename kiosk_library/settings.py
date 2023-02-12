@@ -145,13 +145,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),
-]
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'staticfiles'),
+# ]
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+STATICFILES_DIRS = (
+  os.path.join(SITE_ROOT, 'static/'),
+)
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'

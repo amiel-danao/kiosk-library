@@ -1,5 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
+from django.db import models
+from django.db.models.functions import Now
 
 
 class CustomUserManager(BaseUserManager):
@@ -44,3 +46,11 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_staff") is not True:
             raise ValueError(_("Superuser must have is_staff=True."))
         return self.create_user(email, password, **extra_fields)
+
+
+class ReservationManager(models.Manager):
+
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(
+            date_reserved__lt=Now()
+        )
