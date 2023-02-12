@@ -120,7 +120,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    fields = ('isbn', 'title', 'genre', 'author', 'classification', 'publish_date')
+    fields = ('isbn', 'title', 'genre', 'author', 'classification', 'publish_date', 'thumbnail')
     list_display = ('isbn', 'title','genres', 'authors',
                     'classification', 'publish_date')
     list_filter = ('isbn',
