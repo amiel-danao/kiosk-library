@@ -428,7 +428,7 @@ class BookInstanceViewSet(viewsets.ModelViewSet):
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationsSerializer
-    filterset_fields = ['student',]
+    filterset_fields = ['student__school_id', 'book_instance']
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     # lookup_field = 'student'
     # lookup_url_kwarg = 'student'
