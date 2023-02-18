@@ -1,16 +1,18 @@
 import django_tables2 as tables
 from system.models import BookInstance, OutgoingTransaction
 from django.utils.translation import gettext_lazy as _
-
+from django.utils.safestring import mark_safe
+from django_tables2 import TemplateColumn
 
 class BookInstanceTable(tables.Table):
+    borrow = TemplateColumn(template_code=f'<a type="button" href="#" class="btn btn-primary">Borrow</a>')
+
     class Meta:
         model = BookInstance
         template_name = "django_tables2/bootstrap5.html"
         fields = ("book", "book__author", "book__genre", "book__publish_date", "status", 'location', "borrow_count")
         empty_text = _("No books found for this search query.")
         attrs = {'class': 'table table-hover shadow records-table'}
-        # row_attrs = {'data-href': lambda book: book.get_absolute_url}
 
 
 class OutgoingTransactionTable(tables.Table):

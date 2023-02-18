@@ -1,7 +1,6 @@
-admin notification when a student reserved/borrow a book
+[OK]admin notification when a student reserved/borrow a book
 auto delete reservation after creating transaction
-admin notification, page, upper right
-hide auth token in admin
+[OK]admin notification, page, upper right
+[OK]hide auth token in admin
 
 add book borrow button in website
-pagination for user webpage 10 per page

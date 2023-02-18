@@ -1,9 +1,11 @@
 import django_filters
-from system.models import Book, BookInstance
+from kiosk_library.managers import ReservationManager
+from system.models import Book, BookInstance, Reservations
 from django.db.models import Q
 from django import forms
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django.db import models
 
 
 class BookFilter(django_filters.FilterSet):
@@ -31,3 +33,20 @@ class BookInstanceFilter(django_filters.FilterSet):
 
 class OutgoingTransactionFilter(django_filters.FilterSet):
     pass
+
+class ReservationFilter(django_filters.FilterSet):
+    date_reserved_gte = django_filters.IsoDateTimeFilter(field_name="date_reserved", lookup_expr='gte')
+    class Meta:
+        model = Reservations
+        fields = ['date_reserved_gte', ]
+    # class Meta:
+    #     model = Reservations
+    #     fields = {
+    #         'date_reserved': ('lte', 'gte')
+    #     }
+
+    # filter_overrides = {
+    #     models.DateTimeField: {
+    #         'filter_class': django_filters.IsoDateTimeFilter
+    #     },
+    # }

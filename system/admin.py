@@ -3,14 +3,13 @@ from django.apps import apps
 from django.contrib.auth.models import Group
 from system.filters import BookFilter
 from system.forms import BookInstanceForm, IncomingTransactionForm, OutgoingTransactionForm
-from system.models import SMS, Book, BookInstance, CustomUser, Genre, IncomingTransaction, OutgoingTransaction, Author, Reservations, Student
+from system.models import SMS, Book, BookInstance, CustomUser, Genre, IncomingTransaction, Notification, OutgoingTransaction, Author, Reservations, Student
 from django.contrib.admin.views.main import ChangeList
 from django.urls import reverse
 from django.utils.html import format_html
-from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.models import TokenProxy
 
-
-admin.site.unregister((Group,))
+admin.site.unregister((Group, TokenProxy))
 exempted_models = (Group, SMS)
 
 @admin.register(Author)
@@ -153,8 +152,27 @@ class GenreAdmin(admin.ModelAdmin):
 
 @admin.register(Reservations)
 class ReservationAdmin(admin.ModelAdmin):
-    readonly_fields = ('student', 'book_instance')
+    readonly_fields = ('student', 'book_instance', 'expiry_date')
     list_display = ('student', 'book_instance', 'date_reserved',)
+    
+    def has_add_permission(self, request):
+        return False
+    
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+    readonly_fields = ('reservation', 'message', 'date')
+    fields = ('reservation', 'message', 'date')
+    list_display = ('reservation', 'message', 'date',)
+
+    def change_view(request, object_id, form_url='', extra_context=None):
+        return super().change_view(request, object_id, form_url, extra_context)
+    
+    def change_view(self, request, object_id, form_url="", extra_context=None):
+        extra_context = extra_context or {}
+        notification = Notification.objects.get(id=object_id)
+        notification.viewed = True
+        notification.save()
+        return super(NotificationAdmin, self).change_view(request, object_id, form_url=form_url, extra_context=extra_context)
     
     def has_add_permission(self, request):
         return False

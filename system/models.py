@@ -220,3 +220,12 @@ class Reservations(models.Model):
 
     def __str__(self) -> str:
         return f'{self.student.school_id} - {self.book_instance.book.title}'
+
+class Notification(models.Model):
+    reservation = models.OneToOneField(Reservations, on_delete=models.SET_NULL, null=True)
+    message = models.CharField(max_length=256, blank=True, default='')
+    viewed = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'{self.id}: {self.message}'

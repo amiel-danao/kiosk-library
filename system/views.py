@@ -26,10 +26,10 @@ from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
 from system.admin import OutgoingTransactionAdmin
 from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
-from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student
+from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student, Notification
 from django_tables2.config import RequestConfig
-from system.filters import BookInstanceFilter, OutgoingTransactionFilter
-from system.serializers import BookInstanceSerializer, ReservationsSerializer, StudentSerializer
+from system.filters import BookInstanceFilter, OutgoingTransactionFilter, ReservationFilter
+from system.serializers import BookInstanceSerializer, NotificationSerializer, ReservationsSerializer, StudentSerializer
 from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
@@ -428,8 +428,13 @@ class BookInstanceViewSet(viewsets.ModelViewSet):
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationsSerializer
-    filterset_fields = ['student__school_id', 'book_instance']
+    filterset_fields = ['student__school_id', 'book_instance']    
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     # lookup_field = 'student'
     # lookup_url_kwarg = 'student'
     # lookup_value_regex = '[\w@.]+'
+
+class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
+    filterset_fields = ['viewed', ]
