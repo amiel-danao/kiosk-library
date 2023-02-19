@@ -3,7 +3,7 @@ from django.apps import apps
 from django.contrib.auth.models import Group
 from system.filters import BookFilter
 from system.forms import BookInstanceForm, IncomingTransactionForm, OutgoingTransactionForm
-from system.models import SMS, Book, BookInstance, CustomUser, Genre, IncomingTransaction, Notification, OutgoingTransaction, Author, Reservations, Student
+from system.models import SMS, Book, BookInstance, BookStatus, CustomUser, Genre, IncomingTransaction, Notification, OutgoingTransaction, Author, Reservations, Student
 from django.contrib.admin.views.main import ChangeList
 from django.urls import reverse
 from django.utils.html import format_html
@@ -31,14 +31,14 @@ class BookInstanceAdmin(admin.ModelAdmin):
     search_fields = ('book__author', 'book__isbn',)
 
     def borrower(self, obj):
-        if obj.status == 'o':
+        if obj.status == BookStatus.ON_LOAN:
             latest_outgoing = OutgoingTransaction.objects.filter(book=obj).first()
             if latest_outgoing:
                 return latest_outgoing.borrower
         return '-'
 
     def return_date(self, obj):
-        if obj.status == 'o':
+        if obj.status == BookStatus.ON_LOAN:
             latest_outgoing = OutgoingTransaction.objects.filter(book=obj).first()
             if latest_outgoing:
                 return latest_outgoing.return_date

@@ -37,10 +37,6 @@ class BookInstanceSerializer(serializers.ModelSerializer):
         return ','.join(list(instance.book.genre.values_list('name', flat=True)))
 
     def get_status(self, instance):
-        reservation = Reservations.objects.filter(book_instance__id=instance.id).first()
-        if reservation is not None:
-            return 'Reserved'
-
         return BookStatus(instance.status).label
     
     def get_thumbnail(self, instance):

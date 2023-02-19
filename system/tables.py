@@ -20,16 +20,10 @@ class BookInstanceTable(tables.Table):
         attrs = {'class': 'table table-hover shadow records-table'}
 
     def render_status(self, record):
-        reservation = Reservations.objects.filter(book_instance=record).first()
-        if reservation is not None:
-            return 'Reserved'
         return BookStatus(record.status).label
 
     def render_borrow(self, record):
-        if not self.request.user.is_authenticated or record.status == BookStatus.ON_LOAN:
-            return '-'
-        reservation = Reservations.objects.filter(book_instance=record).first()
-        if reservation is not None:
+        if not self.request.user.is_authenticated or record.status != BookStatus.AVAILABLE:
             return '-'
         token = django.middleware.csrf.get_token(self.request)
         url = reverse('system:create_borrow')

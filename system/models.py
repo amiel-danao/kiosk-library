@@ -117,6 +117,7 @@ class Student(models.Model):
 class BookStatus(models.IntegerChoices):
     ON_LOAN = 0, "On loan"
     AVAILABLE = 1, "Available"
+    RESERVED = 2, "Reserved"
 
 class BookInstance(models.Model):
     """
