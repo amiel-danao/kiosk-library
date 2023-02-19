@@ -449,7 +449,7 @@ class BookInstanceViewSet(viewsets.ModelViewSet):
     # filterset_fields = ['id',]
     # filter_class = BookInstanceFilter
     filter_backends = [filters.SearchFilter]
-    search_fields = ['=id', 'book__title', 'book__author__first_name']
+    search_fields = ['=id', 'book__title', 'book__author__first_name', 'book__author__last_name']
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
 class ReservationViewSet(viewsets.ModelViewSet):
