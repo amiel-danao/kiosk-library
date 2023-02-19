@@ -3,7 +3,7 @@ import django
 from django.urls import reverse
 import django_tables2 as tables
 from pydantic import ValidationError
-from system.models import BookInstance, BookStatus, OutgoingTransaction, Student
+from system.models import BookInstance, BookStatus, OutgoingTransaction, Reservations, Student
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from django_tables2 import TemplateColumn
@@ -18,9 +18,18 @@ class BookInstanceTable(tables.Table):
         fields = ("book", "book__author", "book__genre", "book__publish_date", "status", 'location', "borrow_count")
         empty_text = _("No books found for this search query.")
         attrs = {'class': 'table table-hover shadow records-table'}
-    
+
+    def render_status(self, record):
+        reservation = Reservations.objects.filter(book_instance=record).first()
+        if reservation is not None:
+            return 'Reserved'
+        return BookStatus(record.status).label
+
     def render_borrow(self, record):
         if not self.request.user.is_authenticated or record.status == BookStatus.ON_LOAN:
+            return '-'
+        reservation = Reservations.objects.filter(book_instance=record).first()
+        if reservation is not None:
             return '-'
         token = django.middleware.csrf.get_token(self.request)
         url = reverse('system:create_borrow')
