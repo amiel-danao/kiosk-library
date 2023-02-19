@@ -107,6 +107,27 @@ class OutgoingCreateView(CreateView):
 
         return HttpResponseRedirect(self.get_success_url())
 
+def create_borrow(request):
+    if request.method == 'POST':
+        form = OutgoingTransactionForm(request.POST)
+        try:
+            if form.is_valid():
+                outgoing = form.save()
+                outgoing.book.status = BookStatus.ON_LOAN
+                outgoing.book.borrow_count += 1
+                outgoing.book.save()
+                messages.success(request, 'Book borrowed successfully!')
+                return redirect('system:index')
+            else:
+                # for field in form.errors:
+                #     field_value = request.POST.get(field)
+                #     for error in field:
+                messages.error(request, form.errors)
+                return HttpResponseRedirect(reverse_lazy('system:index'))
+        except BookInstance.DoesNotExist as error:
+            messages.error(request, error)
+            return HttpResponseRedirect(reverse_lazy('system:index'))
+
 def create_outgoing(request):
     if request.method == 'POST':
         form = OutgoingTransactionForm(request.POST)
@@ -143,16 +164,18 @@ def create_incoming(request):
             if incoming.book.status == BookStatus.AVAILABLE:
                 messages.error(request, f'This book {incoming.book.book.title} was already returned!')
                 return HttpResponseRedirect(reverse_lazy('admin:system_incomingtransaction_changelist'))
-            incoming.book.status = BookStatus.AVAILABLE
-            
-
-            id = request.POST.get('book', None)
-            outgoing = OutgoingTransaction.objects.filter(book__id=id).latest('date_borrowed')
-            incoming.borrower = outgoing.borrower
-
+            incoming.book.status = BookStatus.AVAILABLE            
             incoming.book.save()
-            incoming.save()
 
+            try:
+                id = request.POST.get('book', None)
+                outgoing = OutgoingTransaction.objects.filter(book__id=id).latest('date_borrowed')
+                incoming.borrower = outgoing.borrower
+                incoming.save()
+            except OutgoingTransaction.DoesNotExist as exception:
+                messages.error(request, f'This book {incoming.book.book.title} has no outgoing transaction!')
+                return HttpResponseRedirect(reverse_lazy('admin:system_incomingtransaction_changelist'))
+            
             # IncomingTransaction.objects.create(book=incoming.book, borrower=outgoing.borrower)
             # redirect to the detail page of the band we just created
             # we can provide the url pattern arguments as arguments to redirect function

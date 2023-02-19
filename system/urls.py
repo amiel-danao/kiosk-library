@@ -26,6 +26,7 @@ urlpatterns = [
     path('student/books/<int:pk>/', views.StudentBorrowedListView.as_view(), name='student_borrowed_books'),
     path('outgoingtransaction/create/', views.create_outgoing, name='outgoing_create'),
     path('incomingtransaction/create/', views.create_incoming, name='incoming_create'),
+    path('outgoingtransaction/create_borrow/', views.create_borrow, name='create_borrow'),
     path('admin/sms/', views.sms_view, name='sms'),
     re_path(
         r'^student-autocomplete/$',
