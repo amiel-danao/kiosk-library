@@ -68,6 +68,12 @@ python manage.py createsuperuser //this will create admin account
 
 python manage.py runserver //This will run the web app
 
+To save a backup json file:
+python manage.py dumpdata system.book system.bookinstance system.genre system.author --indent=2 > backup.json
+
+To load a backup json file:
+python manage.py loaddata backup.json
+
 
 Setup Android Source code
 

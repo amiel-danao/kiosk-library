@@ -1,0 +1,3029 @@
+[
+{
+  "model": "system.book",
+  "pk": 2,
+  "fields": {
+    "created_date": "2023-02-15T05:50:02.774Z",
+    "last_modified": "2023-02-15T05:50:26.349Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710866591",
+    "title": "Existential- Phenomological Approach (Revised Edition)",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/51McvkXQfaL._SX334_BO1204203200_.jpg",
+    "author": [
+      2
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 3,
+  "fields": {
+    "created_date": "2023-02-15T05:52:22.024Z",
+    "last_modified": "2023-02-15T05:52:22.024Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710858149",
+    "title": "Introduction To Philosophy: Through The Philosophy of Man",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/opac-image.png",
+    "author": [
+      3
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 4,
+  "fields": {
+    "created_date": "2023-02-15T05:54:26.625Z",
+    "last_modified": "2023-02-15T05:54:26.625Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9786214090419",
+    "title": "Introduction to Philosophy of the Human Person",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/Sb542d08adecd4d0da1187bff884d2b6fa.jpg",
+    "author": [
+      4,
+      5
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 5,
+  "fields": {
+    "created_date": "2023-02-15T05:59:45.322Z",
+    "last_modified": "2023-02-15T05:59:45.322Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9718581693",
+    "title": "Who Art You: A Philosophical Study of Man",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "",
+    "author": [
+      6
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 6,
+  "fields": {
+    "created_date": "2023-02-15T06:01:14.043Z",
+    "last_modified": "2023-02-15T06:01:14.043Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9786214090297",
+    "title": "Introduction to Philosophy of the Human Person",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/S301729ff6638424d84371f67f88a16cdp.jpg",
+    "author": [
+      7
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 7,
+  "fields": {
+    "created_date": "2023-02-15T06:06:54.936Z",
+    "last_modified": "2023-02-15T06:06:54.936Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9711201127",
+    "title": "Philosophy of Man: Selected Reading",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/Dy_Cover_Final_front-2.jpg",
+    "author": [
+      8
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 8,
+  "fields": {
+    "created_date": "2023-02-15T06:09:58.328Z",
+    "last_modified": "2023-02-15T06:09:58.328Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789715741750",
+    "title": "Philosophy of Man: Selected Reading (Third Edition)",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/philosophy_of_man_3rd_ed__manuel_b_dy_jr_1566923477_128491160.jfif",
+    "author": [
+      8
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 9,
+  "fields": {
+    "created_date": "2023-02-15T06:20:03.952Z",
+    "last_modified": "2023-02-15T06:20:03.952Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710388215",
+    "title": "Philosophy of the Human Person: A Phenomenological Approach",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "",
+    "author": [
+      9
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 10,
+  "fields": {
+    "created_date": "2023-02-15T06:26:51.725Z",
+    "last_modified": "2023-02-15T06:26:51.725Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710858858",
+    "title": "Philosophy of Man (Third Edition)",
+    "publish_date": null,
+    "classification": 450,
+    "thumbnail": "book_thumbnails/philosophy_of_man_3rd_edition__1640155039_d6231468.jfif",
+    "author": [
+      10
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 11,
+  "fields": {
+    "created_date": "2023-02-15T06:31:36.042Z",
+    "last_modified": "2023-02-15T06:42:00.645Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9712316521",
+    "title": "A Handbook of Values Education Strategies and Techniques (Volume 1)",
+    "publish_date": null,
+    "classification": 431,
+    "thumbnail": "",
+    "author": [
+      12,
+      11
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 12,
+  "fields": {
+    "created_date": "2023-02-15T06:34:08.819Z",
+    "last_modified": "2023-02-15T06:42:11.797Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "971231653X",
+    "title": "A Handbook of Values Education Strategies and Techniques (Volume II)",
+    "publish_date": null,
+    "classification": 431,
+    "thumbnail": "",
+    "author": [
+      12,
+      11
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 13,
+  "fields": {
+    "created_date": "2023-02-15T06:34:46.935Z",
+    "last_modified": "2023-02-15T06:42:20.481Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9712316548",
+    "title": "A Handbook of Values Education Strategies and Techniques (Volume III)",
+    "publish_date": null,
+    "classification": 431,
+    "thumbnail": "",
+    "author": [
+      12,
+      11
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 14,
+  "fields": {
+    "created_date": "2023-02-15T06:41:46.651Z",
+    "last_modified": "2023-02-15T06:41:46.651Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9711001179",
+    "title": "Understanding Filipinos Values A Management Approach",
+    "publish_date": null,
+    "classification": 232,
+    "thumbnail": "book_thumbnails/51NYn-FNdfL._AC_SY400_.jpg",
+    "author": [
+      11
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 15,
+  "fields": {
+    "created_date": "2023-02-15T06:44:30.596Z",
+    "last_modified": "2023-02-15T06:44:30.596Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9711000695",
+    "title": "Understanding Values",
+    "publish_date": null,
+    "classification": 232,
+    "thumbnail": "book_thumbnails/understanding_values_by_tomas__1617877488_6575fdf4.jpg",
+    "author": [
+      11
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 16,
+  "fields": {
+    "created_date": "2023-02-15T06:45:44.217Z",
+    "last_modified": "2023-02-15T06:45:44.217Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789712720680",
+    "title": "Understanding the Psychic Powers of Man (Revised Edition)",
+    "publish_date": null,
+    "classification": 41,
+    "thumbnail": "book_thumbnails/understanding-the-psychic-powers-of-man.jpg",
+    "author": [
+      13
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 17,
+  "fields": {
+    "created_date": "2023-02-15T06:48:02.303Z",
+    "last_modified": "2023-02-15T06:48:02.303Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710412655",
+    "title": "In Search of Meanings (A Textbook on Introduction to General Philosopy)",
+    "publish_date": null,
+    "classification": 31,
+    "thumbnail": "",
+    "author": [
+      15,
+      14
+    ],
+    "genre": [
+      2
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 18,
+  "fields": {
+    "created_date": "2023-02-15T06:54:17.805Z",
+    "last_modified": "2023-02-15T07:28:47.178Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789719654636",
+    "title": "Logic for Right Living (Revised Edition)",
+    "publish_date": null,
+    "classification": 108,
+    "thumbnail": "book_thumbnails/0a7f02_a1baf771dace49b49216a62ba2848c73_mv2.jpg",
+    "author": [
+      2
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 19,
+  "fields": {
+    "created_date": "2023-02-15T07:05:14.152Z",
+    "last_modified": "2023-02-15T07:05:14.152Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "0471054119",
+    "title": "Psychology: Mind, Brain, & Culture",
+    "publish_date": null,
+    "classification": 121,
+    "thumbnail": "book_thumbnails/wnt_1582.jpg",
+    "author": [
+      18
+    ],
+    "genre": [
+      3
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 20,
+  "fields": {
+    "created_date": "2023-02-15T07:06:55.364Z",
+    "last_modified": "2023-02-15T07:06:55.364Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "0395655536",
+    "title": "Psychology",
+    "publish_date": null,
+    "classification": 121,
+    "thumbnail": "book_thumbnails/s-l1600.jpg",
+    "author": [
+      20,
+      19,
+      21
+    ],
+    "genre": [
+      3
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 21,
+  "fields": {
+    "created_date": "2023-02-15T07:09:02.294Z",
+    "last_modified": "2023-02-15T07:09:02.294Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9812437738",
+    "title": "Atkinson and Hilgard's Introduction to Psychology (14th Edition)",
+    "publish_date": null,
+    "classification": 121,
+    "thumbnail": "book_thumbnails/bf64ae54f9d3f5e39f9e6b1bce056fe9.jfif",
+    "author": [
+      24,
+      23,
+      25,
+      22
+    ],
+    "genre": [
+      3
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 22,
+  "fields": {
+    "created_date": "2023-02-15T07:10:30.528Z",
+    "last_modified": "2023-02-15T07:10:30.528Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789814272544",
+    "title": "Introduction to Psychology",
+    "publish_date": null,
+    "classification": 121,
+    "thumbnail": "book_thumbnails/d08913908610ab1605277f648a3c064c.jfif",
+    "author": [
+      27,
+      26
+    ],
+    "genre": [
+      3
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 23,
+  "fields": {
+    "created_date": "2023-02-15T07:12:21.768Z",
+    "last_modified": "2023-02-15T07:12:21.768Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "0256032467",
+    "title": "Psychology: The Hybrid Science (Fifth Edition)",
+    "publish_date": null,
+    "classification": 121,
+    "thumbnail": "book_thumbnails/content.jfif",
+    "author": [
+      28,
+      29
+    ],
+    "genre": [
+      3
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 24,
+  "fields": {
+    "created_date": "2023-02-15T07:13:51.951Z",
+    "last_modified": "2023-02-15T07:13:51.951Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9780072296945",
+    "title": "Introduction to Psychology Practice Tests",
+    "publish_date": null,
+    "classification": 121,
+    "thumbnail": "book_thumbnails/introductiontops00land_0001.jpg",
+    "author": [
+      30
+    ],
+    "genre": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 25,
+  "fields": {
+    "created_date": "2023-02-15T07:45:30.856Z",
+    "last_modified": "2023-02-15T07:47:50.555Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710862219",
+    "title": "Logic for Filipinos (Second Edition)",
+    "publish_date": null,
+    "classification": 117,
+    "thumbnail": "book_thumbnails/3468787f5edb445f336851bf97b928c4.jfif",
+    "author": [
+      36
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 26,
+  "fields": {
+    "created_date": "2023-02-15T07:48:24.538Z",
+    "last_modified": "2023-02-15T07:48:47.376Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789710445127",
+    "title": "The Art of Living with Reason",
+    "publish_date": null,
+    "classification": 108,
+    "thumbnail": "book_thumbnails/5449433b97ffdaee8d2c24a54b268e0c.jpg",
+    "author": [
+      37
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 27,
+  "fields": {
+    "created_date": "2023-02-15T07:49:39.899Z",
+    "last_modified": "2023-02-15T07:49:39.899Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710863835",
+    "title": "Essential Logic",
+    "publish_date": null,
+    "classification": 108,
+    "thumbnail": "book_thumbnails/31909067fd224d3f60ab524241bd0932.jfif",
+    "author": [
+      38
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 28,
+  "fields": {
+    "created_date": "2023-02-15T07:50:45.089Z",
+    "last_modified": "2023-02-15T07:50:45.089Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710856472",
+    "title": "Harmony of Logic (Third Edition)",
+    "publish_date": null,
+    "classification": 108,
+    "thumbnail": "book_thumbnails/book__harmony_of_logic_1582300063_f7eb84cb_progressive.jpg",
+    "author": [
+      3
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 29,
+  "fields": {
+    "created_date": "2023-02-15T07:52:07.688Z",
+    "last_modified": "2023-02-15T07:52:07.688Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789712351860",
+    "title": "Elements of Logic An Integrative Approach",
+    "publish_date": null,
+    "classification": 108,
+    "thumbnail": "book_thumbnails/elements-of-logic-2012.webp",
+    "author": [
+      39,
+      40
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 30,
+  "fields": {
+    "created_date": "2023-02-15T09:22:34.870Z",
+    "last_modified": "2023-02-15T09:22:34.871Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710857975",
+    "title": "Introduction to Logic (Fourth Edition)",
+    "publish_date": null,
+    "classification": 108,
+    "thumbnail": "book_thumbnails/c5e5e1cdd18f5261c5ed868e5a88bb7e.jfif",
+    "author": [
+      10
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 31,
+  "fields": {
+    "created_date": "2023-02-15T09:24:09.043Z",
+    "last_modified": "2023-02-15T09:24:09.043Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789719983033",
+    "title": "Logic for Right Living",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/download_1.jfif",
+    "author": [
+      2
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 32,
+  "fields": {
+    "created_date": "2023-02-15T09:50:38.772Z",
+    "last_modified": "2023-02-15T09:50:38.772Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710849646",
+    "title": "Logic Simplified and Integrated (Revised Edition)",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/5251b01837cbcf104ff24682e0c5275e.jfif",
+    "author": [
+      41
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 33,
+  "fields": {
+    "created_date": "2023-02-15T09:51:28.294Z",
+    "last_modified": "2023-02-15T09:51:28.294Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789715849258",
+    "title": "Logic Make Sense",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "",
+    "author": [
+      42
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 34,
+  "fields": {
+    "created_date": "2023-02-15T09:52:31.101Z",
+    "last_modified": "2023-02-15T09:52:31.101Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9714204313",
+    "title": "Basics of Logic",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/uc-577debe6a9a49.jpg",
+    "author": [
+      45,
+      44,
+      43
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 35,
+  "fields": {
+    "created_date": "2023-02-15T09:54:31.814Z",
+    "last_modified": "2023-02-15T09:54:31.814Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789715132732",
+    "title": "Logic and Critical Thinking (First Edition)",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "",
+    "author": [
+      46
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 36,
+  "fields": {
+    "created_date": "2023-02-15T09:56:06.372Z",
+    "last_modified": "2023-02-15T09:56:06.372Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9718210040",
+    "title": "The Basic of Correct Reasoning Logic",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/52c1c6337281edbe5e82c85d1c64a9ea.jfif",
+    "author": [
+      47
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 37,
+  "fields": {
+    "created_date": "2023-02-15T09:57:06.414Z",
+    "last_modified": "2023-02-15T09:57:06.414Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "971858157X",
+    "title": "Logic A Deductive Approach",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/uc-59c0a75198d39.jpg",
+    "author": [
+      48
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 38,
+  "fields": {
+    "created_date": "2023-02-15T09:59:22.420Z",
+    "last_modified": "2023-02-15T10:00:15.305Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "971584300X",
+    "title": "The Philosophical Discipline of Correct Thinking",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/67a03a9afec82463257481320fc25c04.jfif",
+    "author": [
+      50
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 39,
+  "fields": {
+    "created_date": "2023-02-15T10:01:16.728Z",
+    "last_modified": "2023-02-15T10:01:16.728Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789715132503",
+    "title": "Logic: Towards Critical Thinking and Reasoning",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/5f6b3d10481e74c2aa9205c74e88e113.jfif",
+    "author": [
+      16
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 40,
+  "fields": {
+    "created_date": "2023-02-15T10:02:08.164Z",
+    "last_modified": "2023-02-15T10:02:08.164Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9710848917",
+    "title": "Logic: The Essentials of Deductive Reasoning",
+    "publish_date": null,
+    "classification": 71,
+    "thumbnail": "book_thumbnails/uc-568b401ba3621.jpg",
+    "author": [
+      51
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 41,
+  "fields": {
+    "created_date": "2023-02-15T10:04:51.715Z",
+    "last_modified": "2023-02-15T10:04:51.715Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9789719905844",
+    "title": "Basic Principles of Critical Thinking",
+    "publish_date": null,
+    "classification": 59,
+    "thumbnail": "book_thumbnails/66504bb9e349810fe7c048b9a8c9b280.jfif",
+    "author": [
+      53,
+      52,
+      54
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 42,
+  "fields": {
+    "created_date": "2023-02-15T10:07:01.898Z",
+    "last_modified": "2023-02-15T10:07:01.898Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9718210059",
+    "title": "Basic concepts and Contemporary Moral Issues",
+    "publish_date": null,
+    "classification": 55,
+    "thumbnail": "book_thumbnails/uc-593f507cd7068.jpg",
+    "author": [
+      47
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 43,
+  "fields": {
+    "created_date": "2023-02-15T10:07:59.236Z",
+    "last_modified": "2023-02-15T10:07:59.236Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9712313352",
+    "title": "Fundamental Logic",
+    "publish_date": null,
+    "classification": 38,
+    "thumbnail": "book_thumbnails/145a2808c647207159acf0c98e593bf6.jfif",
+    "author": [
+      55
+    ],
+    "genre": [
+      5
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 44,
+  "fields": {
+    "created_date": "2023-02-16T05:29:55.838Z",
+    "last_modified": "2023-02-16T05:29:55.838Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "9780857028808",
+    "title": "Teaching Primary Mathematics",
+    "publish_date": null,
+    "classification": 135,
+    "thumbnail": "book_thumbnails/51lWRG5RHKL._SX598_BO1204203200_.jpg",
+    "author": [
+      56
+    ],
+    "genre": [
+      8
+    ]
+  }
+},
+{
+  "model": "system.book",
+  "pk": 45,
+  "fields": {
+    "created_date": "2023-02-16T05:33:18.502Z",
+    "last_modified": "2023-02-16T05:33:18.502Z",
+    "name": "",
+    "is_active": true,
+    "was_deleted": false,
+    "summary": "",
+    "isbn": "1844450325",
+    "title": "Children's Error in Mathematics: Understanding Common Misconceptions in Primary Schools",
+    "publish_date": null,
+    "classification": 135,
+    "thumbnail": "book_thumbnails/9781844450329.jpg",
+    "author": [
+      58,
+      59,
+      57,
+      60,
+      61
+    ],
+    "genre": [
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "0aa69a65-cc39-4c77-a55f-b674801ffbcc",
+  "fields": {
+    "book": 35,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "0ae2fdcf-abbd-477c-abc2-94772fcebe60",
+  "fields": {
+    "book": 6,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "0b3db7db-4a49-4b00-b749-6f1291f47cbf",
+  "fields": {
+    "book": 3,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "0bd714a0-d397-4bb5-a851-fc59d6c3a212",
+  "fields": {
+    "book": 41,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "0d16ec9d-2b98-4ecd-a14b-2297f440ab26",
+  "fields": {
+    "book": 36,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "0f633af8-e2fc-4e96-8a6c-cd2504a4e93f",
+  "fields": {
+    "book": 20,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Circulation 1st Shelf, Row 1A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "10733336-12cf-4789-bc9f-ccef267a60f8",
+  "fields": {
+    "book": 10,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "1916839e-1295-4bee-9f0a-30a7124dff66",
+  "fields": {
+    "book": 38,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "1a9d5f1f-1ea8-444e-aea2-b7c93afa5553",
+  "fields": {
+    "book": 26,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "21cbcf3e-7689-4856-9983-c990c1b91f3d",
+  "fields": {
+    "book": 23,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Circulation 1st Shelf, Row 1A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "22508449-2545-42f9-b8e9-5a686ab52f57",
+  "fields": {
+    "book": 13,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "22b3ce56-7e7d-412c-9aac-e15c881ff8ef",
+  "fields": {
+    "book": 43,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "26be86c0-a7cc-42d0-9f63-90d846d3ceb8",
+  "fields": {
+    "book": 22,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Circulation 1st Shelf, Row 1A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "27879fc3-6e10-456d-9f0a-a42b2e6e7a27",
+  "fields": {
+    "book": 4,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "2d290543-076c-4f79-9c55-6fba7d1977f2",
+  "fields": {
+    "book": 24,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Circulation 1st Shelf, Row 1A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "2d7b0dbc-4b33-4b30-99f7-374c508883c8",
+  "fields": {
+    "book": 14,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "2f1313d1-32fa-4a21-96db-e72f9fa4d720",
+  "fields": {
+    "book": 33,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "3a335399-4c2b-4e1f-b144-f21b08d3c8d7",
+  "fields": {
+    "book": 28,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "3af0e501-a070-439d-91df-355a42e9bf3f",
+  "fields": {
+    "book": 38,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "44cebc25-6f11-4726-af17-4ea90bb6cb4d",
+  "fields": {
+    "book": 25,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "48023bf7-c306-4c73-9368-628f71312211",
+  "fields": {
+    "book": 39,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "5a1f1195-2950-4af0-a5d7-37cdc8f95062",
+  "fields": {
+    "book": 40,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "6e4b7147-9451-44ae-910f-3e0538af0fc2",
+  "fields": {
+    "book": 27,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "744f4ed1-50c7-4635-8af7-839336bed8ab",
+  "fields": {
+    "book": 2,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "74b09718-948a-4748-9046-c3c82c3a5f1c",
+  "fields": {
+    "book": 40,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "766e4168-003f-49eb-8294-712458a69ec9",
+  "fields": {
+    "book": 31,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "7a4e664e-8d13-4032-9997-9bb320303108",
+  "fields": {
+    "book": 37,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "7f2979d9-1d14-4a1f-924d-1bca935969fb",
+  "fields": {
+    "book": 40,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "7f854bb5-95ec-4233-be02-a55164b78f93",
+  "fields": {
+    "book": 30,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "84344eb5-d2d8-4d14-b424-017cdafe69d1",
+  "fields": {
+    "book": 29,
+    "status": 1,
+    "borrow_count": 0,
+    "location": ""
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "85be7104-b781-4192-8bb1-f847f803e861",
+  "fields": {
+    "book": 17,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "85eb29bf-acb3-405b-a63f-9581595ea3d0",
+  "fields": {
+    "book": 19,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Circulation 1st Shelf, Row 1A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "864e57f7-362a-48ce-9611-6cfc3afd6605",
+  "fields": {
+    "book": 2,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "870423b8-4d7d-45ad-ba1c-04c2f030b9aa",
+  "fields": {
+    "book": 30,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "8c4a9a53-b50d-4b9e-9146-ed69be0c8394",
+  "fields": {
+    "book": 8,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "8d36fd50-5b87-47dc-b8e5-81af3ad85b46",
+  "fields": {
+    "book": 18,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "966fa23f-3ce8-4a70-b8c9-799474f41e5a",
+  "fields": {
+    "book": 3,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "a0838df6-e34d-4040-98d1-45c2c2d55adb",
+  "fields": {
+    "book": 36,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "a681790e-258d-4517-9da0-a24b159847e9",
+  "fields": {
+    "book": 16,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "a7035f5e-2c88-4197-aca6-0481b7ecf631",
+  "fields": {
+    "book": 2,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "ab6721e6-5bdd-41d8-85af-f6e85bd9fc9a",
+  "fields": {
+    "book": 7,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "aeb425f5-0190-4c57-82d6-d81c0340dc21",
+  "fields": {
+    "book": 40,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "af3e2647-5e57-42d9-905c-07f78ba5168e",
+  "fields": {
+    "book": 32,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "b54aa214-c3fd-4347-8c3c-cd29de0ca1c0",
+  "fields": {
+    "book": 21,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Circulation 1st Shelf, Row 1A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "b5a04720-6edd-4b35-891c-36cd90fa2b66",
+  "fields": {
+    "book": 42,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "bcecc046-2a92-4144-a86d-7b6e33af1bc5",
+  "fields": {
+    "book": 15,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "bf128dd1-9659-41f8-ab85-2374ed1316ea",
+  "fields": {
+    "book": 27,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "d4da1d7e-ab6f-48f1-a9ac-ff3da67b2363",
+  "fields": {
+    "book": 7,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "dd7e957f-6689-40fa-bfde-f5ae95f27290",
+  "fields": {
+    "book": 36,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "ee12f7d0-c25c-47ac-b70f-672347f60335",
+  "fields": {
+    "book": 9,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "ef34e184-d918-467d-8896-0801039b07bb",
+  "fields": {
+    "book": 34,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "f5cd8fef-668c-4692-adf3-8de1c702a8c1",
+  "fields": {
+    "book": 12,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "f5f9672e-befd-4825-a1a6-57ce835a583d",
+  "fields": {
+    "book": 11,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "fb2a97fb-ba8d-4c65-9193-df8946117711",
+  "fields": {
+    "book": 27,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "fc72c293-4f9e-494e-a343-8662f342143b",
+  "fields": {
+    "book": 5,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.bookinstance",
+  "pk": "ff89a3a1-c1b9-4d1e-9318-68b473a9a013",
+  "fields": {
+    "book": 27,
+    "status": 1,
+    "borrow_count": 0,
+    "location": "Filipiniana 1st Shelf 1st Row A"
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 1,
+  "fields": {
+    "created_date": "2023-02-11T16:53:43.122Z",
+    "last_modified": "2023-02-11T16:53:43.122Z",
+    "name": "Novel",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 2,
+  "fields": {
+    "created_date": "2023-02-15T05:48:16.369Z",
+    "last_modified": "2023-02-15T05:48:16.369Z",
+    "name": "Philosophy",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 3,
+  "fields": {
+    "created_date": "2023-02-15T07:01:23.790Z",
+    "last_modified": "2023-02-15T07:01:23.790Z",
+    "name": "Psychology",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 4,
+  "fields": {
+    "created_date": "2023-02-15T07:01:33.982Z",
+    "last_modified": "2023-02-15T07:01:33.982Z",
+    "name": "Reviewer",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 5,
+  "fields": {
+    "created_date": "2023-02-15T07:28:35.755Z",
+    "last_modified": "2023-02-15T07:28:35.755Z",
+    "name": "Logic",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 6,
+  "fields": {
+    "created_date": "2023-02-15T10:40:05.273Z",
+    "last_modified": "2023-02-15T10:40:05.273Z",
+    "name": "History",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 7,
+  "fields": {
+    "created_date": "2023-02-15T10:40:15.949Z",
+    "last_modified": "2023-02-15T10:40:15.949Z",
+    "name": "Religion",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 8,
+  "fields": {
+    "created_date": "2023-02-16T05:07:14.780Z",
+    "last_modified": "2023-02-16T05:07:14.780Z",
+    "name": "General Mathematics",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 9,
+  "fields": {
+    "created_date": "2023-02-16T05:07:45.759Z",
+    "last_modified": "2023-02-16T05:07:45.759Z",
+    "name": "Thesis",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 10,
+  "fields": {
+    "created_date": "2023-02-16T05:08:11.925Z",
+    "last_modified": "2023-02-16T05:08:11.925Z",
+    "name": "Programming",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 11,
+  "fields": {
+    "created_date": "2023-02-16T05:08:19.763Z",
+    "last_modified": "2023-02-16T05:08:19.763Z",
+    "name": "Software Engineering",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 12,
+  "fields": {
+    "created_date": "2023-02-16T05:08:34.628Z",
+    "last_modified": "2023-02-16T05:08:34.628Z",
+    "name": "Chemistry",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 13,
+  "fields": {
+    "created_date": "2023-02-16T05:08:39.978Z",
+    "last_modified": "2023-02-16T05:08:39.978Z",
+    "name": "Physics",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 14,
+  "fields": {
+    "created_date": "2023-02-16T05:08:46.707Z",
+    "last_modified": "2023-02-16T05:08:46.707Z",
+    "name": "Thermodynamics",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 15,
+  "fields": {
+    "created_date": "2023-02-16T05:08:53.357Z",
+    "last_modified": "2023-02-16T05:08:53.357Z",
+    "name": "Circuits",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 16,
+  "fields": {
+    "created_date": "2023-02-16T05:08:59.662Z",
+    "last_modified": "2023-02-16T05:08:59.662Z",
+    "name": "Electromagnetics",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 17,
+  "fields": {
+    "created_date": "2023-02-16T05:09:12.023Z",
+    "last_modified": "2023-02-16T05:09:12.023Z",
+    "name": "General Sciences",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 18,
+  "fields": {
+    "created_date": "2023-02-16T05:09:27.345Z",
+    "last_modified": "2023-02-16T05:09:27.345Z",
+    "name": "Statistics and Probability",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 19,
+  "fields": {
+    "created_date": "2023-02-16T05:09:44.955Z",
+    "last_modified": "2023-02-16T05:09:44.955Z",
+    "name": "Information Technology",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.genre",
+  "pk": 20,
+  "fields": {
+    "created_date": "2023-02-16T05:10:54.869Z",
+    "last_modified": "2023-02-16T05:10:54.869Z",
+    "name": "Architecture",
+    "is_active": true,
+    "was_deleted": false
+  }
+},
+{
+  "model": "system.author",
+  "pk": 2,
+  "fields": {
+    "created_date": "2023-02-15T05:43:54.148Z",
+    "last_modified": "2023-02-15T05:44:11.947Z",
+    "first_name": "Dennis",
+    "last_name": "Tubo",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 3,
+  "fields": {
+    "created_date": "2023-02-15T05:44:28.682Z",
+    "last_modified": "2023-02-15T05:44:28.682Z",
+    "first_name": "Felix",
+    "last_name": "Montemayor",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 4,
+  "fields": {
+    "created_date": "2023-02-15T05:44:42.126Z",
+    "last_modified": "2023-02-15T05:44:42.126Z",
+    "first_name": "Jose",
+    "last_name": "Joven",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 5,
+  "fields": {
+    "created_date": "2023-02-15T05:44:53.303Z",
+    "last_modified": "2023-02-15T05:44:53.303Z",
+    "first_name": "Ramonito",
+    "last_name": "Perez",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 6,
+  "fields": {
+    "created_date": "2023-02-15T05:45:17.210Z",
+    "last_modified": "2023-02-15T05:45:17.210Z",
+    "first_name": "Ernie",
+    "last_name": "Bhagwani",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 7,
+  "fields": {
+    "created_date": "2023-02-15T05:45:32.312Z",
+    "last_modified": "2023-02-15T05:45:32.312Z",
+    "first_name": "Reynaldo",
+    "last_name": "Padilla",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 8,
+  "fields": {
+    "created_date": "2023-02-15T05:45:45.422Z",
+    "last_modified": "2023-02-15T05:45:45.422Z",
+    "first_name": "Manuel",
+    "last_name": "Dy Jr.",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 9,
+  "fields": {
+    "created_date": "2023-02-15T05:46:04.284Z",
+    "last_modified": "2023-02-15T07:38:16.712Z",
+    "first_name": "Francisco",
+    "last_name": "Castro",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 10,
+  "fields": {
+    "created_date": "2023-02-15T05:46:16.333Z",
+    "last_modified": "2023-02-15T05:46:16.333Z",
+    "first_name": "Corazon",
+    "last_name": "Cruz",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 11,
+  "fields": {
+    "created_date": "2023-02-15T05:46:35.242Z",
+    "last_modified": "2023-02-15T05:46:35.242Z",
+    "first_name": "Tomas Quintin",
+    "last_name": "Andres",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 12,
+  "fields": {
+    "created_date": "2023-02-15T05:46:49.860Z",
+    "last_modified": "2023-02-15T05:46:49.860Z",
+    "first_name": "Pilar Corazon",
+    "last_name": "Andres",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 13,
+  "fields": {
+    "created_date": "2023-02-15T05:47:02.237Z",
+    "last_modified": "2023-02-15T05:47:02.237Z",
+    "first_name": "Jaime",
+    "last_name": "Licauco",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 14,
+  "fields": {
+    "created_date": "2023-02-15T05:47:22.099Z",
+    "last_modified": "2023-02-15T05:47:22.099Z",
+    "first_name": "Jesse",
+    "last_name": "Songcayawon",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 15,
+  "fields": {
+    "created_date": "2023-02-15T05:47:29.340Z",
+    "last_modified": "2023-02-15T05:47:29.340Z",
+    "first_name": "Roxie",
+    "last_name": "Pildo",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 16,
+  "fields": {
+    "created_date": "2023-02-15T05:47:48.417Z",
+    "last_modified": "2023-02-15T05:47:48.417Z",
+    "first_name": "Venancio",
+    "last_name": "Ardales",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 17,
+  "fields": {
+    "created_date": "2023-02-15T06:56:53.158Z",
+    "last_modified": "2023-02-15T06:56:53.158Z",
+    "first_name": "John",
+    "last_name": "Santrock",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 18,
+  "fields": {
+    "created_date": "2023-02-15T06:57:09.723Z",
+    "last_modified": "2023-02-15T06:57:09.723Z",
+    "first_name": "Drew",
+    "last_name": "Westen",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 19,
+  "fields": {
+    "created_date": "2023-02-15T06:57:20.415Z",
+    "last_modified": "2023-02-15T06:57:20.415Z",
+    "first_name": "Zick",
+    "last_name": "Rubin",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 20,
+  "fields": {
+    "created_date": "2023-02-15T06:57:38.110Z",
+    "last_modified": "2023-02-15T06:57:38.110Z",
+    "first_name": "Letitia Anne",
+    "last_name": "Peplau",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 21,
+  "fields": {
+    "created_date": "2023-02-15T06:57:48.269Z",
+    "last_modified": "2023-02-15T06:57:48.269Z",
+    "first_name": "Peter",
+    "last_name": "Salovey",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 22,
+  "fields": {
+    "created_date": "2023-02-15T06:58:09.690Z",
+    "last_modified": "2023-02-15T06:58:09.690Z",
+    "first_name": "Edward",
+    "last_name": "Smith",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 23,
+  "fields": {
+    "created_date": "2023-02-15T06:58:24.212Z",
+    "last_modified": "2023-02-15T06:58:24.212Z",
+    "first_name": "Susan",
+    "last_name": "Hoeksama",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 24,
+  "fields": {
+    "created_date": "2023-02-15T06:58:41.154Z",
+    "last_modified": "2023-02-15T06:58:41.154Z",
+    "first_name": "Barbara",
+    "last_name": "Fredrickson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 25,
+  "fields": {
+    "created_date": "2023-02-15T06:59:01.743Z",
+    "last_modified": "2023-02-15T06:59:01.743Z",
+    "first_name": "Geoffrey",
+    "last_name": "Loftus",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 26,
+  "fields": {
+    "created_date": "2023-02-15T06:59:20.678Z",
+    "last_modified": "2023-02-15T06:59:20.678Z",
+    "first_name": "Rod",
+    "last_name": "Plotnik",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 27,
+  "fields": {
+    "created_date": "2023-02-15T06:59:38.968Z",
+    "last_modified": "2023-02-15T06:59:38.968Z",
+    "first_name": "Haig",
+    "last_name": "Kouyoumdjian",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 28,
+  "fields": {
+    "created_date": "2023-02-15T06:59:58.652Z",
+    "last_modified": "2023-02-15T06:59:58.652Z",
+    "first_name": "Frank",
+    "last_name": "McMahon",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 29,
+  "fields": {
+    "created_date": "2023-02-15T07:00:07.730Z",
+    "last_modified": "2023-02-15T07:00:07.730Z",
+    "first_name": "Judith",
+    "last_name": "McMahon",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 30,
+  "fields": {
+    "created_date": "2023-02-15T07:00:22.207Z",
+    "last_modified": "2023-02-15T07:00:22.207Z",
+    "first_name": "Eric",
+    "last_name": "Landrun",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 31,
+  "fields": {
+    "created_date": "2023-02-15T07:36:05.004Z",
+    "last_modified": "2023-02-15T07:36:05.004Z",
+    "first_name": "Herminigildo",
+    "last_name": "Villasoto",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 32,
+  "fields": {
+    "created_date": "2023-02-15T07:36:20.406Z",
+    "last_modified": "2023-02-15T07:36:20.406Z",
+    "first_name": "Leonardo",
+    "last_name": "Dollentas",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 33,
+  "fields": {
+    "created_date": "2023-02-15T07:36:35.385Z",
+    "last_modified": "2023-02-15T07:36:35.385Z",
+    "first_name": "Nestor",
+    "last_name": "Limquero",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 34,
+  "fields": {
+    "created_date": "2023-02-15T07:36:51.108Z",
+    "last_modified": "2023-02-15T07:36:51.108Z",
+    "first_name": "Emmanuel",
+    "last_name": "Domingo",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 35,
+  "fields": {
+    "created_date": "2023-02-15T07:37:05.577Z",
+    "last_modified": "2023-02-15T07:37:05.577Z",
+    "first_name": "Ricardo",
+    "last_name": "Cabantac",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 36,
+  "fields": {
+    "created_date": "2023-02-15T07:38:05.834Z",
+    "last_modified": "2023-02-15T07:38:05.834Z",
+    "first_name": "Prisciliano",
+    "last_name": "Bauzon",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 37,
+  "fields": {
+    "created_date": "2023-02-15T07:39:14.045Z",
+    "last_modified": "2023-02-15T07:39:14.045Z",
+    "first_name": "Pepe",
+    "last_name": "Umali",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 38,
+  "fields": {
+    "created_date": "2023-02-15T07:39:26.555Z",
+    "last_modified": "2023-02-15T07:39:26.555Z",
+    "first_name": "Arnel",
+    "last_name": "Malitao",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 39,
+  "fields": {
+    "created_date": "2023-02-15T07:39:52.203Z",
+    "last_modified": "2023-02-15T07:39:52.203Z",
+    "first_name": "Christopher Ryan",
+    "last_name": "Maboloc",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 40,
+  "fields": {
+    "created_date": "2023-02-15T07:40:05.602Z",
+    "last_modified": "2023-02-15T07:40:05.602Z",
+    "first_name": "Edgar",
+    "last_name": "Pascua",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 41,
+  "fields": {
+    "created_date": "2023-02-15T09:43:07.488Z",
+    "last_modified": "2023-02-15T09:43:07.488Z",
+    "first_name": "Edgardo",
+    "last_name": "Reyes",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 42,
+  "fields": {
+    "created_date": "2023-02-15T09:43:18.979Z",
+    "last_modified": "2023-02-15T09:43:18.980Z",
+    "first_name": "Dariel",
+    "last_name": "Palmiano",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 43,
+  "fields": {
+    "created_date": "2023-02-15T09:43:35.231Z",
+    "last_modified": "2023-02-15T09:43:35.231Z",
+    "first_name": "Thelma",
+    "last_name": "Meer",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 44,
+  "fields": {
+    "created_date": "2023-02-15T09:43:45.999Z",
+    "last_modified": "2023-02-15T09:43:45.999Z",
+    "first_name": "Lou",
+    "last_name": "Hualda",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 45,
+  "fields": {
+    "created_date": "2023-02-15T09:44:03.435Z",
+    "last_modified": "2023-02-15T09:44:03.435Z",
+    "first_name": "Lamberto",
+    "last_name": "Bamba Jr.",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 46,
+  "fields": {
+    "created_date": "2023-02-15T09:44:13.612Z",
+    "last_modified": "2023-02-15T09:44:13.612Z",
+    "first_name": "Romeo",
+    "last_name": "Javines",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 47,
+  "fields": {
+    "created_date": "2023-02-15T09:47:26.768Z",
+    "last_modified": "2023-02-15T09:47:26.768Z",
+    "first_name": "Rosendo",
+    "last_name": "Gualdo",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 48,
+  "fields": {
+    "created_date": "2023-02-15T09:47:39.371Z",
+    "last_modified": "2023-02-15T09:47:39.371Z",
+    "first_name": "Lysander",
+    "last_name": "Fetizanan",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 49,
+  "fields": {
+    "created_date": "2023-02-15T09:47:55.201Z",
+    "last_modified": "2023-02-15T09:47:55.201Z",
+    "first_name": "Lionel",
+    "last_name": "Buenaflor",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 50,
+  "fields": {
+    "created_date": "2023-02-15T09:48:03.719Z",
+    "last_modified": "2023-02-15T09:48:03.719Z",
+    "first_name": "Eddie",
+    "last_name": "Babor",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 51,
+  "fields": {
+    "created_date": "2023-02-15T09:48:20.834Z",
+    "last_modified": "2023-02-15T09:48:20.834Z",
+    "first_name": "Ramon",
+    "last_name": "Agapay",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 52,
+  "fields": {
+    "created_date": "2023-02-15T09:48:33.859Z",
+    "last_modified": "2023-02-15T09:48:33.860Z",
+    "first_name": "Willie",
+    "last_name": "Bunag",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 53,
+  "fields": {
+    "created_date": "2023-02-15T09:48:57.434Z",
+    "last_modified": "2023-02-15T09:48:57.434Z",
+    "first_name": "Joselito",
+    "last_name": "Angulo",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 54,
+  "fields": {
+    "created_date": "2023-02-15T09:49:13.772Z",
+    "last_modified": "2023-02-15T09:49:13.772Z",
+    "first_name": "Charmaine",
+    "last_name": "Libanes",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 55,
+  "fields": {
+    "created_date": "2023-02-15T09:49:28.987Z",
+    "last_modified": "2023-02-15T09:49:28.987Z",
+    "first_name": "Manuel",
+    "last_name": "Pinon",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 56,
+  "fields": {
+    "created_date": "2023-02-16T05:12:51.800Z",
+    "last_modified": "2023-02-16T05:12:51.800Z",
+    "first_name": "Sylvia",
+    "last_name": "Turner",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 57,
+  "fields": {
+    "created_date": "2023-02-16T05:13:02.993Z",
+    "last_modified": "2023-02-16T05:13:02.993Z",
+    "first_name": "Alice",
+    "last_name": "Hanseb",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 58,
+  "fields": {
+    "created_date": "2023-02-16T05:13:14.683Z",
+    "last_modified": "2023-02-16T05:13:14.683Z",
+    "first_name": "Doreen",
+    "last_name": "Drews",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 59,
+  "fields": {
+    "created_date": "2023-02-16T05:13:25.529Z",
+    "last_modified": "2023-02-16T05:13:25.529Z",
+    "first_name": "John",
+    "last_name": "Dudgeon",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 60,
+  "fields": {
+    "created_date": "2023-02-16T05:13:34.887Z",
+    "last_modified": "2023-02-16T05:13:34.887Z",
+    "first_name": "Fiona",
+    "last_name": "Lawton",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 61,
+  "fields": {
+    "created_date": "2023-02-16T05:13:45.147Z",
+    "last_modified": "2023-02-16T05:13:45.147Z",
+    "first_name": "Liz",
+    "last_name": "Surtees",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 62,
+  "fields": {
+    "created_date": "2023-02-16T05:13:53.942Z",
+    "last_modified": "2023-02-16T05:13:53.942Z",
+    "first_name": "James",
+    "last_name": "Stewart",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 63,
+  "fields": {
+    "created_date": "2023-02-16T05:14:21.953Z",
+    "last_modified": "2023-02-16T05:14:21.953Z",
+    "first_name": "Lothar",
+    "last_name": "Redlin",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 64,
+  "fields": {
+    "created_date": "2023-02-16T05:14:49.307Z",
+    "last_modified": "2023-02-16T05:14:49.307Z",
+    "first_name": "Saleem",
+    "last_name": "Watson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 65,
+  "fields": {
+    "created_date": "2023-02-16T05:15:03.540Z",
+    "last_modified": "2023-02-16T05:15:03.540Z",
+    "first_name": "Ira",
+    "last_name": "Papick",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 66,
+  "fields": {
+    "created_date": "2023-02-16T05:15:12.663Z",
+    "last_modified": "2023-02-16T05:15:12.663Z",
+    "first_name": "Ron",
+    "last_name": "Larson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 67,
+  "fields": {
+    "created_date": "2023-02-16T05:16:53.839Z",
+    "last_modified": "2023-02-16T05:16:53.839Z",
+    "first_name": "David",
+    "last_name": "Poole",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 68,
+  "fields": {
+    "created_date": "2023-02-16T05:17:01.929Z",
+    "last_modified": "2023-02-16T05:17:01.929Z",
+    "first_name": "Craig",
+    "last_name": "Richardson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 69,
+  "fields": {
+    "created_date": "2023-02-16T05:17:31.043Z",
+    "last_modified": "2023-02-16T05:17:31.043Z",
+    "first_name": "Laura",
+    "last_name": "Frost",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 70,
+  "fields": {
+    "created_date": "2023-02-16T05:17:39.654Z",
+    "last_modified": "2023-02-16T05:17:39.654Z",
+    "first_name": "Todd",
+    "last_name": "Deal",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 71,
+  "fields": {
+    "created_date": "2023-02-16T05:17:51.836Z",
+    "last_modified": "2023-02-16T05:17:51.836Z",
+    "first_name": "Karen",
+    "last_name": "Timberlake",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 72,
+  "fields": {
+    "created_date": "2023-02-16T05:18:00.739Z",
+    "last_modified": "2023-02-16T05:18:00.739Z",
+    "first_name": "Terje",
+    "last_name": "Aven",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 73,
+  "fields": {
+    "created_date": "2023-02-16T05:18:16.266Z",
+    "last_modified": "2023-02-16T05:18:16.266Z",
+    "first_name": "Seymour",
+    "last_name": "Lipschutz",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 74,
+  "fields": {
+    "created_date": "2023-02-16T05:18:26.248Z",
+    "last_modified": "2023-02-16T05:18:26.248Z",
+    "first_name": "Marc",
+    "last_name": "Lipson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 75,
+  "fields": {
+    "created_date": "2023-02-16T05:18:52.976Z",
+    "last_modified": "2023-02-16T05:18:52.976Z",
+    "first_name": "Hwei",
+    "last_name": "Hsu",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 76,
+  "fields": {
+    "created_date": "2023-02-16T05:19:04.679Z",
+    "last_modified": "2023-02-16T05:19:04.679Z",
+    "first_name": "Allan",
+    "last_name": "Bluman",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 77,
+  "fields": {
+    "created_date": "2023-02-16T05:19:20.968Z",
+    "last_modified": "2023-02-16T05:19:20.968Z",
+    "first_name": "Timothy",
+    "last_name": "Urdan",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 78,
+  "fields": {
+    "created_date": "2023-02-16T05:19:31.748Z",
+    "last_modified": "2023-02-16T05:19:31.748Z",
+    "first_name": "Rebecca",
+    "last_name": "Elliott",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 79,
+  "fields": {
+    "created_date": "2023-02-16T05:19:47.563Z",
+    "last_modified": "2023-02-16T05:19:47.563Z",
+    "first_name": "Christopher",
+    "last_name": "Morrell",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 80,
+  "fields": {
+    "created_date": "2023-02-16T05:19:59.272Z",
+    "last_modified": "2023-02-16T05:19:59.272Z",
+    "first_name": "Alvin",
+    "last_name": "Halpern",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 81,
+  "fields": {
+    "created_date": "2023-02-16T05:20:12.430Z",
+    "last_modified": "2023-02-16T05:20:12.430Z",
+    "first_name": "Nils",
+    "last_name": "Dalarsson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 82,
+  "fields": {
+    "created_date": "2023-02-16T05:20:24.254Z",
+    "last_modified": "2023-02-16T05:20:24.254Z",
+    "first_name": "Mariana",
+    "last_name": "Dalarsson",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 83,
+  "fields": {
+    "created_date": "2023-02-16T05:20:46.275Z",
+    "last_modified": "2023-02-16T05:20:46.276Z",
+    "first_name": "Leonardo",
+    "last_name": "Golubovic",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 84,
+  "fields": {
+    "created_date": "2023-02-16T05:20:56.604Z",
+    "last_modified": "2023-02-16T05:20:56.604Z",
+    "first_name": "Richard",
+    "last_name": "Fowler",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 85,
+  "fields": {
+    "created_date": "2023-02-16T05:21:10.679Z",
+    "last_modified": "2023-02-16T05:21:10.679Z",
+    "first_name": "Clifford",
+    "last_name": "Stein",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 86,
+  "fields": {
+    "created_date": "2023-02-16T05:21:23.036Z",
+    "last_modified": "2023-02-16T05:21:23.036Z",
+    "first_name": "Robert",
+    "last_name": "Drysdale",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 87,
+  "fields": {
+    "created_date": "2023-02-16T05:21:33.932Z",
+    "last_modified": "2023-02-16T05:21:33.932Z",
+    "first_name": "Kenneth",
+    "last_name": "Bogart",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 88,
+  "fields": {
+    "created_date": "2023-02-16T05:21:50.200Z",
+    "last_modified": "2023-02-16T05:21:50.200Z",
+    "first_name": "Edward",
+    "last_name": "Rothwell",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 89,
+  "fields": {
+    "created_date": "2023-02-16T05:22:07.741Z",
+    "last_modified": "2023-02-16T05:22:07.741Z",
+    "first_name": "Michael",
+    "last_name": "Cloud",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 90,
+  "fields": {
+    "created_date": "2023-02-16T05:22:21.064Z",
+    "last_modified": "2023-02-16T05:22:21.064Z",
+    "first_name": "Joseph",
+    "last_name": "Edminister",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 91,
+  "fields": {
+    "created_date": "2023-02-16T05:22:31.905Z",
+    "last_modified": "2023-02-16T05:22:31.905Z",
+    "first_name": "Mahmood",
+    "last_name": "Nahvi",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 92,
+  "fields": {
+    "created_date": "2023-02-16T05:22:49.176Z",
+    "last_modified": "2023-02-16T05:22:49.177Z",
+    "first_name": "Brian Robert (B.R.)",
+    "last_name": "Martin",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 93,
+  "fields": {
+    "created_date": "2023-02-16T05:23:06.389Z",
+    "last_modified": "2023-02-16T05:23:06.389Z",
+    "first_name": "Steven",
+    "last_name": "Ackerman",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 94,
+  "fields": {
+    "created_date": "2023-02-16T05:23:16.649Z",
+    "last_modified": "2023-02-16T05:23:16.649Z",
+    "first_name": "John",
+    "last_name": "Knox",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 95,
+  "fields": {
+    "created_date": "2023-02-16T05:23:31.498Z",
+    "last_modified": "2023-02-16T05:23:31.499Z",
+    "first_name": "Lawrence",
+    "last_name": "Brown",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 96,
+  "fields": {
+    "created_date": "2023-02-16T05:23:38.935Z",
+    "last_modified": "2023-02-16T05:23:38.935Z",
+    "first_name": "Thomas",
+    "last_name": "Holme",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 97,
+  "fields": {
+    "created_date": "2023-02-16T05:23:53.432Z",
+    "last_modified": "2023-02-16T05:23:53.432Z",
+    "first_name": "Theodore",
+    "last_name": "Brown",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 98,
+  "fields": {
+    "created_date": "2023-02-16T05:24:06.020Z",
+    "last_modified": "2023-02-16T05:24:06.021Z",
+    "first_name": "Eugene",
+    "last_name": "LeMay",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 99,
+  "fields": {
+    "created_date": "2023-02-16T05:24:14.934Z",
+    "last_modified": "2023-02-16T05:24:14.934Z",
+    "first_name": "Bruce",
+    "last_name": "Bursten",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 100,
+  "fields": {
+    "created_date": "2023-02-16T05:24:27.553Z",
+    "last_modified": "2023-02-16T05:24:27.553Z",
+    "first_name": "Catherine",
+    "last_name": "Murphy",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 101,
+  "fields": {
+    "created_date": "2023-02-16T05:24:40.353Z",
+    "last_modified": "2023-02-16T05:24:40.353Z",
+    "first_name": "Patrick",
+    "last_name": "Woodward",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+},
+{
+  "model": "system.author",
+  "pk": 102,
+  "fields": {
+    "created_date": "2023-02-16T05:24:49.884Z",
+    "last_modified": "2023-02-16T05:24:49.884Z",
+    "first_name": "John",
+    "last_name": "Moore",
+    "date_of_birth": null,
+    "date_of_death": null
+  }
+}
+]
