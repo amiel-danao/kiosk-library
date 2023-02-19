@@ -1,3 +1,4 @@
+from rest_framework import filters
 import django_filters.rest_framework
 from rest_framework import generics, mixins, viewsets
 from django.conf import settings
@@ -445,7 +446,10 @@ class StudentViewSet(viewsets.ModelViewSet):
 class BookInstanceViewSet(viewsets.ModelViewSet):
     queryset = BookInstance.objects.all()
     serializer_class = BookInstanceSerializer
-    filterset_fields = ['id',]
+    # filterset_fields = ['id',]
+    # filter_class = BookInstanceFilter
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=id', 'book__title', 'book__author__first_name']
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
 class ReservationViewSet(viewsets.ModelViewSet):
