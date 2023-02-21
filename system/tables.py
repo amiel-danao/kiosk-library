@@ -31,14 +31,15 @@ class BookInstanceTable(tables.Table):
         if student is None:
             return '-'
         return_date = timezone.make_aware(datetime.now()).strftime('%Y-%m-%d')
+        form_id = f'id_borrow_{record.pk}'
         html_string = f'''
-        <form method="post" action="{url}">
+        <form method="post" id="{form_id}" action="{url}">
             <input name="csrfmiddlewaretoken" value="{token}" hidden>
             <input type="text" id="id_book_title" class="form-control-plaintext" name="book_title" value="{record.book.title}" hidden>            
             <input type="text" id="id_book" name="book" value="{record.pk}" hidden>
             <input type="text" id="id_borrower" name="borrower" value="{student.school_id}" hidden>
             <input type="text" id="id_return_date" name="return_date" value="{return_date}" hidden>
-            <button type="submit" href="#" class="btn btn-primary">Borrow</button>
+            <button type="button" onclick="showConfirmBorrow('{form_id}');" class="btn btn-primary">Borrow</button>
         </form>'''
         return mark_safe(html_string)
 

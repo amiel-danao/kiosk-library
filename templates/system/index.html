@@ -87,4 +87,29 @@
         </form>
     </div>
   </div>
+  {% block my_scripts %}
+  <script>
+    function showConfirmBorrow(form_id){
+      bootbox.confirm({
+        title: 'Confirm',
+        message: 'Are you sure you want to borrow this Book?',
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> Cancel'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Yes'
+            }
+        },
+        callback: function (result) {
+          console.log('This was logged in the callback: ' + result);
+          if (result == true){
+            $(`#${form_id}`).submit();
+          }
+        }
+    });
+    }
+  </script>
+  
+  {% endblock my_scripts %}
 {% endblock %}

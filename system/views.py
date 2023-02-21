@@ -117,6 +117,13 @@ def create_borrow(request):
                 outgoing.book.status = BookStatus.ON_LOAN
                 outgoing.book.borrow_count += 1
                 outgoing.book.save()
+
+                try:
+                    student = Student.objects.get(email=request.user.email)
+                    message = f'{student.school_id}, borrowed the book: {outgoing.book.book.title}'
+                    Notification.objects.create(reservation=None, message=message)
+                except Student.DoesNotExist as _:
+                    pass
                 messages.success(request, 'Book borrowed successfully!')
                 return redirect('system:index')
             else:
