@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from system.models import BookInstance, BookStatus, Genre, Notification, Reservations, Student
+from system.models import BookInstance, BookStatus, Genre, Notification, OutgoingTransaction, Reservations, Student
 from django.db.models.functions import Concat
 from django.db.models import Value
 
@@ -45,14 +45,20 @@ class BookInstanceSerializer(serializers.ModelSerializer):
             photo_url = instance.book.thumbnail.url
             return request.build_absolute_uri(photo_url)
         else:
-            return ''
-        
+            return ''        
 
     class Meta:
         model = BookInstance
         # fields = '__all__'
         exclude = ('book',)
         depth = 1 
+
+class OutgoingTransactionSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(source='book.book.title')
+    
+    class Meta:
+        model = OutgoingTransaction
+        fields = ('borrower', 'title', 'date_borrowed', 'return_date')
 
     
 class ReservationsSerializer(serializers.ModelSerializer):

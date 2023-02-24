@@ -11,6 +11,7 @@ router.register(r'student', views.StudentViewSet)
 router.register(r'book_instance', views.BookInstanceViewSet)
 router.register(r'reservation', views.ReservationViewSet)
 router.register(r'notification', views.NotificationViewSet)
+router.register(r'outgoing_transaction', views.OutgoingTransactionViewSet)
 
 urlpatterns = [
     path('api/', include((router.urls, 'app_name'), namespace='instance_name')),

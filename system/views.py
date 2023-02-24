@@ -30,7 +30,7 @@ from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransaction
 from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student, Notification
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter, ReservationFilter
-from system.serializers import BookInstanceSerializer, NotificationSerializer, ReservationsSerializer, StudentSerializer
+from system.serializers import BookInstanceSerializer, NotificationSerializer, OutgoingTransactionSerializer, ReservationsSerializer, StudentSerializer
 from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
@@ -459,6 +459,15 @@ class BookInstanceViewSet(viewsets.ModelViewSet):
     search_fields = ['book__title', '=book__isbn', 'book__author__first_name', 'book__author__last_name']
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
+class OutgoingTransactionViewSet(viewsets.ModelViewSet):
+    queryset = OutgoingTransaction.objects.all()
+    serializer_class = OutgoingTransactionSerializer
+    filterset_fields = ['borrower',]
+    # filter_class = BookInstanceFilter
+    filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
+    # search_fields = ['book__title', '=book__isbn', 'book__author__first_name', 'book__author__last_name']
+
+
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservations.objects.all()
     serializer_class = ReservationsSerializer
@@ -472,3 +481,4 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Notification.objects.all()
     serializer_class = NotificationSerializer
     filterset_fields = ['viewed', ]
+
