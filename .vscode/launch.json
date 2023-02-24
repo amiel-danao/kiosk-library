@@ -15,6 +15,7 @@
             "django": true,
             "justMyCode": true
         },
+        
         {
             "name": "Python: Current File",
             "type": "python",
@@ -22,6 +23,17 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
-        }
+        },
+        {
+            "name": "Delete Expired Reservations",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "delete_expired_reservations"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
     ]
 }
