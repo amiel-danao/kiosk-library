@@ -203,7 +203,7 @@ class SMS(models.Model):
     message = models.CharField(max_length=150, blank=False)
 
 def reservation_expiry_date():
-    now = timezone(datetime.now()) + timedelta(hours=1)
+    now = timezone(datetime.now() + timedelta(hours=1))
     return now
 
 class Reservations(models.Model):
