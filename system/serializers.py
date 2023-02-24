@@ -62,8 +62,10 @@ class OutgoingTransactionSerializer(serializers.ModelSerializer):
 
     
 class ReservationsSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Reservations
+        read_only_fields = ('expiry_date',)
         fields = '__all__'
 
 class NotificationSerializer(serializers.ModelSerializer):
