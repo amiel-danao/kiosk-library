@@ -28,7 +28,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
     fields = ('book', 'status', "borrow_count", 'location')
     list_display = ('book', 'status', 'borrower', "return_date", 'borrow_count', 'qr', )
     list_filter = ('book__genre', 'book__classification', 'status')
-    search_fields = ('book__author', 'book__isbn',)
+    search_fields = ('book__title', 'book__author__first_name', 'book__author__last_name', 'book__isbn',)
 
     def borrower(self, obj):
         if obj.status == BookStatus.ON_LOAN:
@@ -51,18 +51,6 @@ class BookInstanceAdmin(admin.ModelAdmin):
         ) 
         return format_html('<a target="_blank" href="{0}" >{1}<i class="bi bi-qr-code"></i></a>', url, my_id)
 
-    # def get_queryset(self, request):
-    #     qs = super().get_queryset(request)
-    #     return qs
-
-    # def changelist_view(self, request, extra_context=None):
-    #     queryset = self.get_queryset(request)
-    #     filter = BookInstanceAdminFilter(request.GET, queryset=queryset)
-    #     my_context = {
-    #         'filter' : filter
-    #     }
-    #     return super(BookInstanceAdmin, self).changelist_view(request,
-    #         extra_context=my_context)
 
 @admin.register(OutgoingTransaction)
 class OutgoingTransactionAdmin(admin.ModelAdmin):

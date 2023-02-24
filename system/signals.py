@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from system.models import BookStatus, Notification, OutgoingTransaction, Reservations
@@ -18,5 +18,10 @@ def delete_reservation(sender, instance, created, **kwargs):
     if created:
 
         reservation = Reservations.objects.filter(student=instance.borrower, book_instance=instance.book).first()
-        if reservation is not None:
+        if reservation is not None:            
             reservation.delete()
+
+@receiver(post_delete,sender=Reservations)
+def delete_profile(sender,instance,*args,**kwargs):
+    instance.book_instance.status = BookStatus.AVAILABLE
+    instance.book_instance.save()
