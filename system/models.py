@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+import pytz
 from kiosk_library.managers import CustomUserManager, ReservationManager
 import uuid
 from datetime import datetime, timedelta
@@ -203,7 +204,8 @@ class SMS(models.Model):
     message = models.CharField(max_length=150, blank=False)
 
 def reservation_expiry_date():
-    now = datetime.now() + timedelta(hours=1)
+    tz = pytz.timezone('Asia/Manila')
+    now = datetime.now(tz=tz) + timedelta(hours=1)
     return now
 
 class Reservations(models.Model):
