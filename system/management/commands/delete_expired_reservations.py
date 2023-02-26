@@ -3,12 +3,15 @@ from django.db.models.functions import Now
 from django.utils import timezone
 from django.utils.timezone import make_aware
 from datetime import datetime, timedelta
+
+import pytz
 from system.models import BookInstance, BookStatus, Reservations
 
 class Command(BaseCommand):
     help = 'Remove expired reservations'
 
     def handle(self, *args, **options):
+        tz = pytz.timezone('Asia/Manila')
         d = make_aware(datetime.now() - timedelta(hours=1))
 
         qs = Reservations._base_manager.filter(expiry_date__lt=d)
