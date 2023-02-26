@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         tz = pytz.timezone('Asia/Manila')
-        d = make_aware(datetime.now() - timedelta(hours=1))
+        d = make_aware(datetime.now() - timedelta(hours=1), timezone=tz)
 
         qs = Reservations._base_manager.filter(expiry_date__lt=d)
         
