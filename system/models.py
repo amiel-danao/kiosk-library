@@ -26,7 +26,7 @@ class Author(TimeStampedMixin):
     """
     Model representing an author.
     """
-    first_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100, blank=True)
 
     last_name = models.CharField(max_length=100)
 
@@ -45,6 +45,9 @@ class Author(TimeStampedMixin):
         """
         return '{0} ({1})'.format(self.first_name, self.last_name)
 
+class BookType(models.IntegerChoices):
+    BOOK = 0, "Book"
+    THESIS_MATERIALS = 1, "Thesis materials"
 
 class Book(CatalogueMixin):
     """
@@ -58,7 +61,7 @@ class Book(CatalogueMixin):
 
     summary = models.TextField(max_length=1000)
 
-    isbn = ISBNField(unique=True)
+    isbn = ISBNField(blank=True, default='')
 
     title = models.CharField(max_length=255, default='', blank=False)
 
@@ -70,6 +73,8 @@ class Book(CatalogueMixin):
         related_name='books',
         related_query_name='book'
     )
+
+    type = models.IntegerField(choices=BookType.choices, default=BookType.BOOK)
 
     publish_date = models.DateField(null=True, blank=True)
     classification = models.PositiveIntegerField(
@@ -86,6 +91,10 @@ class Book(CatalogueMixin):
 
     class JSONAPIMeta:
         resource_name = 'books'
+
+class ThesisBook(Book):
+    class Meta:
+        proxy = True
 
 def generate_school_id():
     

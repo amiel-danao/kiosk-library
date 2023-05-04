@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit
 from dal import autocomplete
 from django.utils.translation import gettext as _
 from django import forms
@@ -141,3 +143,11 @@ class SMSForm(forms.ModelForm):
         widgets = {
             'students': autocomplete.ModelSelect2Multiple(url='system:student-autocomplete')
         }
+
+    
+class BookFilterFormHelper(FormHelper):
+    form_method = 'GET'
+    layout = Layout(
+        'search',
+        Submit('submit', 'Search'),
+    )

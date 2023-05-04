@@ -3,7 +3,7 @@ from django.apps import apps
 from django.contrib.auth.models import Group
 from system.filters import BookFilter
 from system.forms import BookInstanceForm, IncomingTransactionForm, OutgoingTransactionForm
-from system.models import SMS, Book, BookInstance, BookStatus, CustomUser, Genre, IncomingTransaction, Notification, OutgoingTransaction, Author, Reservations, Student
+from system.models import SMS, Book, BookInstance, BookStatus, BookType, CustomUser, Genre, IncomingTransaction, Notification, OutgoingTransaction, Author, Reservations, Student, ThesisBook
 from django.contrib.admin.views.main import ChangeList
 from django.urls import reverse
 from django.utils.html import format_html
@@ -14,7 +14,7 @@ exempted_models = (Group, SMS)
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name')
+    list_display = ('last_name', 'first_name')
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
@@ -107,7 +107,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    fields = ('isbn', 'title', 'genre', 'author', 'classification', 'publish_date', 'thumbnail')
+    fields = ('isbn', 'title', 'genre', 'author', 'classification', 'publish_date', 'thumbnail', 'type')
     list_display = ('isbn', 'title','genres', 'authors',
                     'classification', 'publish_date')
     list_filter = ('isbn',
@@ -115,6 +115,9 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('isbn', 'title',
                      'classification', 'publish_date')
     filter_horizontal = ("genre", "author")
+
+    def get_queryset(self, request):
+        return self.model.objects.filter(type=BookType.BOOK)
 
     def changelist_view(self, request, extra_context=None):
         queryset = self.get_queryset(request)
@@ -133,6 +136,11 @@ class BookAdmin(admin.ModelAdmin):
 
     def classification_number(self, obj):
         return str(obj.classification).zfill(3)
+
+@admin.register(ThesisBook)
+class ThesisMaterialAdmin(BookAdmin):
+    def get_queryset(self, request):
+        return self.model.objects.filter(type=BookType.THESIS_MATERIALS)
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):

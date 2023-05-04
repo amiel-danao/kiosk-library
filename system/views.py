@@ -26,8 +26,8 @@ from django_tables2 import SingleTableView
 from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
 from system.admin import OutgoingTransactionAdmin
-from system.forms import IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
-from system.models import Book, BookInstance, BookStatus, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student, Notification
+from system.forms import BookFilterFormHelper, IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
+from system.models import Book, BookInstance, BookStatus, BookType, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student, Notification
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter, ReservationFilter
 from system.serializers import BookInstanceSerializer, NotificationSerializer, OutgoingTransactionSerializer, ReservationsSerializer, StudentSerializer
@@ -79,13 +79,13 @@ class BookInstanceListView(SingleTableView, FilterView):
     strict=False
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().filter(book__type=BookType.BOOK).order_by('book__title')
         return qs
 
     def get_context_data(self, **kwargs):
         context = super(BookInstanceListView, self).get_context_data(**kwargs)
-        species=self.get_queryset()
-        f = self.filterset_class(self.request.GET, queryset=species)
+        qs=self.get_queryset().order_by('book__title')
+        f = self.filterset_class(self.request.GET, queryset=qs)
         context['filter'] = f
         table = self.table_class(f.qs)
         RequestConfig(self.request).configure(table)
@@ -94,6 +94,32 @@ class BookInstanceListView(SingleTableView, FilterView):
         
         return context
 
+class ThesisBookListView(SingleTableView, FilterView):
+    model = BookInstance
+    table_class = BookInstanceTable
+    template_name = 'system/index.html'
+    filterset_class = BookInstanceFilter
+    table_pagination = {
+        'per_page': 5,
+    }
+    strict=False
+
+    def get_queryset(self):
+        qs = super().get_queryset().filter(book__type=BookType.THESIS_MATERIALS)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(ThesisBookListView, self).get_context_data(**kwargs)
+        qs=self.get_queryset().order_by('book__title')
+        f = self.filterset_class(self.request.GET, queryset=qs)
+        context['filter'] = f
+        context['thesis_only'] = True
+        table = self.table_class(f.qs)
+        RequestConfig(self.request).configure(table)
+        context['table'] = table
+
+        
+        return context
 
 class OutgoingCreateView(CreateView):
     model = OutgoingTransaction

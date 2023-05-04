@@ -5,6 +5,7 @@
 {% load render_table from django_tables2 %}
 
 {% load bootstrap5 %}
+{% load widget_tweaks %}
 
 {# Load CSS and JavaScript #}
 {% bootstrap_css %}
@@ -24,12 +25,33 @@
 
 <div class="row ">   
             <div class="col p-3">
-        
+              <form action="" id="filter_form" method="get" class="form form-inline mb-2">
+              <div class="input-group mb-3">{% render_field filter.form.search class="form-control" placeholder='Search by title'%}
+                <button class="btn btn-success" type="submit" form="filter_form" id="search_button"><i class="bi bi-search"></i>Search</button>
+              
+              </div>
+              <div id="filter_div" class="collapse">
+                <!-- {% bootstrap_form filter.form %} -->
+                {% for field in filter.form %}
+                  {% if field.name != 'search' %}
+                      <div id="id_{{ field.name}}">
+                          {{ field.label_tag }}
+                          {% render_field field class="form-control" %} <!-- widget_tweaks -->
+                      </div>
+                    {% endif %}
+                {% endfor %}
+              </div>
+            </form>
     {% if filter %}
-    <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Search <i class="bi bi-search"></i>
+    <button type="button" class="btn btn-primary mb-1" data-bs-toggle="collapse" href="#filter_div" aria-controls="filter_div">
+        Filter <i class="bi bi-funnel"></i>
       </button>
-      {% endif %}            
+        {% if thesis_only %}
+          <a type="button" class="btn btn-secondary" href="{% url 'system:thesis_materials' %}">Clear</a>
+        {% else %}
+          <a type="button" class="btn btn-secondary" href="{% url 'system:index' %}">Clear</a>
+        {% endif %}
+    {% endif %}            
 
                 
             
@@ -42,51 +64,6 @@
 </div>
 
 
-
-<!-- <div class="row">
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_185b58dfd29%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_185b58dfd29%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_185b58dfd29%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_185b58dfd29%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_185b58dfd29%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_185b58dfd29%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.421875%22%20y%3D%22104.5%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-</div> -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form action="" method="get" class="form form-inline mb-2">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    
-                    {% bootstrap_form filter.form  %}
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Search <i class="bi bi-search"></i></button>
-                </div>
-            </div>
-        </form>
-    </div>
-  </div>
   {% block my_scripts %}
   <script>
     function showConfirmBorrow(form_id){

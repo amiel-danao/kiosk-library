@@ -16,6 +16,7 @@ router.register(r'outgoing_transaction', views.OutgoingTransactionViewSet)
 urlpatterns = [
     path('api/', include((router.urls, 'app_name'), namespace='instance_name')),
     path('', views.BookInstanceListView.as_view(), name='index'),
+    path('thesis_materials', views.ThesisBookListView.as_view(), name='thesis_materials'),    
     path('qr/<str:pk>/', views.show_qr, name="show-qr"),
     path('accounts/login/',
          auth_views.LoginView.as_view(authentication_form=LoginForm, redirect_authenticated_user=True), name='login'),

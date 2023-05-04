@@ -19,9 +19,17 @@ class BookFilter(django_filters.FilterSet):
 
 class BookInstanceFilter(django_filters.FilterSet):
     location = django_filters.CharFilter(lookup_expr='icontains')
+    search = django_filters.CharFilter(method='filter_search')
     book__isbn = django_filters.CharFilter(lookup_expr='exact')
     book__author = django_filters.CharFilter(label='Author', method='filter_author')
     book__publish_date = django_filters.DateFilter(widget=forms.DateInput(attrs={'type': 'date'}))
+
+    def __init__(self, *args, **kwargs):
+        super(BookInstanceFilter, self).__init__(*args, **kwargs)
+        genre = self.filters['book__genre'].label = 'Genre (Hold Ctrl+Left click to select multiple)'
+
+    def filter_search(self, queryset, name, value):
+        return queryset.filter(book__title__icontains=value)
 
     def filter_author(self, queryset, name, value):
         return queryset.filter(Q(book__author__first_name__icontains=value) | Q(book__author__last_name__icontains=value))
@@ -50,3 +58,5 @@ class ReservationFilter(django_filters.FilterSet):
     #         'filter_class': django_filters.IsoDateTimeFilter
     #     },
     # }
+
+

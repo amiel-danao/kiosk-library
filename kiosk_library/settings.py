@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'django_tables2',
     'django_filters',
     'isbn_field',
-    'bootstrap5'
+    'bootstrap5',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

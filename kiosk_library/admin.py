@@ -5,6 +5,30 @@ from django.apps import apps
 
 
 class MyAdminSite(admin.AdminSite):
+    def get_app_list(self, request):
+        """
+        Return a sorted list of all the installed apps that have been
+        registered in this site.
+        """
+        ordering = [
+            "Books",
+            "Thesis books",
+        ]
+
+
+
+        app_dict = self._build_app_dict(request)
+        # a.sort(key=lambda x: b.index(x[0]))
+        # Sort the apps alphabetically.
+        app_list = sorted(app_dict.values(), key=lambda x: x['name'].lower())
+
+        
+        # Sort the models alphabetically within each app.
+        for app in app_list:
+            app['models'].sort(key=lambda x: ordering.index(x['name']) if x['name'] in ordering else 3)
+
+        return app_list
+
     def _build_app_dict(self, request, label=None):
         """
         Build the app dictionary. The optional `label` parameter filters models

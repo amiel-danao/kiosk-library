@@ -1,4 +1,5 @@
 {% load i18n static admin_volt %}
+{% load system_extras %}
 
 <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
     <a class="navbar-brand me-lg-5" href="/">
@@ -82,7 +83,7 @@
                               <div class="multi-level collapse {% if 'tables-bootstrap-' in segment or app_label == app.label or app.url in request.path|urlencode %} show {% endif %}" role="list" id="submenu-{{ app.app_label }}"  
                                                                                                                                       aria-expanded="{% if app_label == app.label or app.url in request.path|urlencode %}true{% else %}false{% endif %}">
                                     <ul class="flex-column nav">
-                                        {% for model in app.models %}
+                                        {% for model in app.models|sort_lower %}
                                             {% if model.url %}
                                               <li class="nav-item{% if 'bootstrap-tables' in segment or model.url in request.path|urlencode %} active {% endif %}">
                                                     <a class="nav-link" href="{{ model.url }}">
