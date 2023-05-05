@@ -42,6 +42,7 @@ from django.core.mail import send_mail
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework import viewsets, filters
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -481,8 +482,9 @@ class BookInstanceViewSet(viewsets.ModelViewSet):
     serializer_class = BookInstanceSerializer
     filterset_fields = ['status',]
     # filter_class = BookInstanceFilter
-    filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter]
     search_fields = ['book__title', '=book__isbn', 'book__author__first_name', 'book__author__last_name']
+    ordering = ('book__title',)
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
 class OutgoingTransactionViewSet(viewsets.ModelViewSet):

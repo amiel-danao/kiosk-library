@@ -9,4 +9,4 @@
 Sms auto send,3x day of borrowing, day before returning, day returned
 Conflict of reservation when page is not refreshed
 App reserve time remaining in app
-Checking of reservation(if functioning properly)
+Checking deletion of reservation(if functioning properly)
