@@ -15,7 +15,7 @@ class Command(BaseCommand):
         date_aware = make_aware(datetime.now() - timedelta(hours=1), timezone=tz)
         d = date_aware.astimezone(pytz.UTC)
 
-        qs = Reservations._base_manager.filter(expiry_date__lt=d)
+        qs = Reservations._base_manager.filter(expiry_date__lte=d)
         
         ids = qs.values_list('book_instance__pk', flat=True)
 

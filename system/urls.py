@@ -4,6 +4,8 @@ from system import views
 from django.contrib.auth import views as auth_views
 from rest_framework import routers
 
+from system.models import Genre
+
 app_name = 'system'
 
 router = routers.DefaultRouter()
@@ -12,6 +14,7 @@ router.register(r'book_instance', views.BookInstanceViewSet)
 router.register(r'reservation', views.ReservationViewSet)
 router.register(r'notification', views.NotificationViewSet)
 router.register(r'outgoing_transaction', views.OutgoingTransactionViewSet)
+router.register(r'genre', views.GenreList)
 
 urlpatterns = [
     path('api/', include((router.urls, 'app_name'), namespace='instance_name')),

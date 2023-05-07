@@ -27,10 +27,10 @@ from django_filters.views import FilterView
 from kiosk_library.managers import CustomUserManager
 from system.admin import OutgoingTransactionAdmin
 from system.forms import BookFilterFormHelper, IncomingTransactionForm, LoginForm, OutgoingTransactionForm, RegisterForm, SMSForm, StudentProfileForm
-from system.models import Book, BookInstance, BookStatus, BookType, CustomUser, IncomingTransaction, OutgoingTransaction, Reservations, Student, Notification
+from system.models import Book, BookInstance, BookStatus, BookType, CustomUser, Genre, IncomingTransaction, OutgoingTransaction, Reservations, Student, Notification
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter, ReservationFilter
-from system.serializers import BookInstanceSerializer, NotificationSerializer, OutgoingTransactionSerializer, ReservationsSerializer, StudentSerializer
+from system.serializers import BookInstanceSerializer, GenreSerializer, NotificationSerializer, OutgoingTransactionSerializer, ReservationsSerializer, StudentSerializer
 from system.tables import BookInstanceTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
@@ -480,10 +480,10 @@ class StudentViewSet(viewsets.ModelViewSet):
 class BookInstanceViewSet(viewsets.ModelViewSet):
     queryset = BookInstance.objects.all()
     serializer_class = BookInstanceSerializer
-    filterset_fields = ['status',]
+    filterset_fields = ['status', 'genre']
     # filter_class = BookInstanceFilter
     filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter]
-    search_fields = ['book__title', '=book__isbn', 'book__author__first_name', 'book__author__last_name']
+    search_fields = ['book__title', '=book__isbn', 'book__genre', 'book__author__first_name', 'book__author__last_name']
     ordering = ('book__title',)
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
@@ -510,3 +510,12 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NotificationSerializer
     filterset_fields = ['viewed', ]
 
+class GenreList(mixins.ListModelMixin, viewsets.GenericViewSet):
+    queryset = Genre.objects.all().distinct().values_list('name', flat=True)
+    serializer_class = GenreSerializer
+
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = GenreSerializer(queryset, many=True)
+        return Response(list(queryset))
