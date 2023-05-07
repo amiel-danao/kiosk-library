@@ -510,7 +510,7 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ['viewed', ]
 
 class GenreList(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = Genre.objects.all().distinct().values_list('name', flat=True)
+    queryset = Genre.objects.all().distinct().order_by('name').values_list('name', flat=True)
     serializer_class = GenreSerializer
 
     def list(self, request):
