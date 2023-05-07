@@ -480,10 +480,10 @@ class StudentViewSet(viewsets.ModelViewSet):
 class BookInstanceViewSet(viewsets.ModelViewSet):
     queryset = BookInstance.objects.all()
     serializer_class = BookInstanceSerializer
-    filterset_fields = ['status', 'genre']
+    filterset_fields = ['status']
     # filter_class = BookInstanceFilter
     filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend, filters.OrderingFilter]
-    search_fields = ['book__title', '=book__isbn', 'book__genre', 'book__author__first_name', 'book__author__last_name']
+    search_fields = ['book__title', '=book__isbn', 'book__author__first_name', 'book__author__last_name']
     ordering = ('book__title',)
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
