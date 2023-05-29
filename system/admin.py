@@ -115,6 +115,8 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('isbn', 'title',
                      'classification', 'publish_date')
     filter_horizontal = ("genre", "author")
+    
+    list_display_links = ('title',)
 
     def get_queryset(self, request):
         return self.model.objects.filter(type=BookType.BOOK)
