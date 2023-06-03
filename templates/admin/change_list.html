@@ -20,6 +20,8 @@
             }
         </style>
     {% endif %}
+
+    
 {% endblock %}
 
 {% block extrahead %}
@@ -92,10 +94,14 @@
                             </div>
                             <div class="modal-body">
                               <div id="reader" width="600px"></div>
+
+                              
                               {% if scan_out_form %}
+                                <button type="button" id="scanButton">Press this button before scanning your QR</button>
+                                <input type="text" id="id_book" name="book" readonly required>
                                 <label for="id_book_title">Book Instance</label>
                                 <input type="text" id="id_book_title" class="form-control-plaintext" name="book_title" readonly>
-                                <input type="text" id="id_book" name="book" hidden required>
+                                
 
                                 <label for="id_borrower">Borrower</label>
                                 <input type="text" id="id_borrower" name="borrower" required>
@@ -103,9 +109,10 @@
                               {% endif %}
 
                               {% if scan_in_form %}
+                                <button type="button" id="scanButton">Press this button before scanning your QR</button>
+                                <input type="text" id="id_book" name="book" readonly required>
                                 <label for="id_book_title">Book Instance</label>
                                 <input type="text" id="id_book_title" class="form-control-plaintext" name="book_title" readonly>
-                                <input type="text" id="id_book" name="book" hidden required>
 
                                 <!-- <label for="id_borrower">Borrower</label> -->
                                 <!-- <input type="text" hidden id="id_borrower" class="form-control-plaintext" name="borrower"> -->
@@ -282,10 +289,66 @@
         }
 
         $(document).ready(function(){
-            let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader",
-            { fps: 10, qrbox: {width: 250, height: 250} });
-            html5QrcodeScanner.render(onScanSuccess);
+            // let html5QrcodeScanner = new Html5QrcodeScanner(
+            // "reader",
+            // { fps: 10, qrbox: {width: 250, height: 250} });
+            // html5QrcodeScanner.render(onScanSuccess);
+
+            // $("#html5-qrcode-anchor-scan-type-change").hide();
+            // $("#html5-qrcode-button-camera-permission").on('click', function(){
+            //     console.log('qr request');
+            //     $("#html5-qrcode-anchor-scan-type-change").hide();
+            // });
+
+            // Select the element where you want to catch the paste action
+            const myElement = document.getElementById('id_book');
+            const scanButton = document.getElementById('scanButton');
+
+            scanButton.addEventListener('click', function(event){
+                myElement.focus();
+            });
+
+            
+            // Attach the 'paste' event listener
+            myElement.addEventListener('paste', function(event) {
+            // Access the pasted content
+            const clipboardData = event.clipboardData || window.clipboardData;
+            const pastedText = clipboardData.getData('text');
+
+            myElement.value = pastedText;
+
+            let books = JSON.parse(pastedText);
+            if (books.length == 0)
+            {
+                alert('Invalid QR code!');
+                return;
+            }
+            let book_instance = books[0];            
+            console.log(book_instance);
+
+            if (book_instance.hasOwnProperty('pk')){
+                selectElement('id_book', book_instance.pk);
+
+                if (books.length > 1){
+                    let book = books[1];
+                    
+                    console.log(book);
+                    if (book.hasOwnProperty('fields')){
+                        selectElement('id_book_title', book['fields'].title);
+                        console.log('has title');
+                    }
+                }
+            }
+            else{
+                alert('Invalid QR code!');
+            }
+
+            // Do something with the pasted content
+            console.log('Pasted text:', pastedText);
+
+            // Prevent the default paste behavior (optional)
+            event.preventDefault();
+            });
         });
 
     </script>
