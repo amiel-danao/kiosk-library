@@ -81,7 +81,7 @@
                     
                     <div class="modal" tabindex="-1" id="qrScanModal">
                         <div class="modal-dialog">
-                        <form class="form" method="post" action="{{ scan.url }}">
+                        <form id="scan_form" class="form" method="post" action="{{ scan.url }}">
                             {% csrf_token %}
                             <div class="modal-content">                            
                             
@@ -121,6 +121,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                              <button type="button" id="clearForm" class="btn btn-secondary" >Clear Form</button>
                               <button type="submit" class="btn btn-primary">{{ scan.modal_accept_text|safe  }}</button>
                             </div>
                           </div>
@@ -250,8 +251,6 @@
             element.value = valueToSelect;
         }
 
-        
-
         function onScanSuccess(decodedText, decodedResult) {
             // handle the scanned code as you like, for example:
             // console.log(`Code matched = ${decodedText}`, decodedResult);
@@ -300,6 +299,18 @@
             //     $("#html5-qrcode-anchor-scan-type-change").hide();
             // });
 
+            const form = document.getElementById('scan_form');
+
+            // Attach the 'keydown' event listener to the form
+            form.addEventListener('keydown', function(event) {
+                // Check if the Enter key was pressed
+                if (event.keyCode === 13) {
+                    // Prevent the default form submission
+                    event.preventDefault();
+                }
+            });
+
+            
             // Select the element where you want to catch the paste action
             const myElement = document.getElementById('id_book');
             const scanButton = document.getElementById('scanButton');
@@ -308,48 +319,81 @@
                 myElement.focus();
             });
 
+            $('#qrScanModal').on('shown.bs.modal', function () {
+                // Do something when the modal is shown
+                console.log('Modal shown');
+                form.reset();
+                myElement.focus();
+            });
+
+            $("#clearForm").on('click', function(){
+                form.reset();
+                myElement.focus();
+            });
+
+            myElement.addEventListener('textInput', function (e){
+                processScannedText(e.data, myElement);
+            });
             
             // Attach the 'paste' event listener
             myElement.addEventListener('paste', function(event) {
-            // Access the pasted content
-            const clipboardData = event.clipboardData || window.clipboardData;
-            const pastedText = clipboardData.getData('text');
+                
+                // Access the pasted content
+                const clipboardData = event.clipboardData || window.clipboardData;
+                const pastedText = clipboardData.getData('text');
 
-            myElement.value = pastedText;
+                processScannedText(pastedText, myElement);
 
-            let books = JSON.parse(pastedText);
-            if (books.length == 0)
-            {
-                alert('Invalid QR code!');
-                return;
-            }
-            let book_instance = books[0];            
-            console.log(book_instance);
+                // Prevent the default paste behavior (optional)
+                event.preventDefault();
+            });
+        });
 
-            if (book_instance.hasOwnProperty('pk')){
-                selectElement('id_book', book_instance.pk);
-
-                if (books.length > 1){
-                    let book = books[1];
-                    
-                    console.log(book);
-                    if (book.hasOwnProperty('fields')){
-                        selectElement('id_book_title', book['fields'].title);
-                        console.log('has title');
-                    }
-                }
-            }
-            else{
-                alert('Invalid QR code!');
-            }
-
+        function processScannedText(pastedText, myElement){
             // Do something with the pasted content
             console.log('Pasted text:', pastedText);
 
-            // Prevent the default paste behavior (optional)
-            event.preventDefault();
-            });
-        });
+                            
+            try{
+                let books = JSON.parse(pastedText);
+                if (books.length == 0)
+                {
+                    alert('Invalid QR code!');
+                    myElement.focus();
+                    myElement.value = '';
+                    return;
+                }
+                let book_instance = books[0];            
+                console.log(book_instance);
+
+                if (book_instance.hasOwnProperty('pk')){
+                    selectElement('id_book', book_instance.pk);
+
+                    if (books.length > 1){
+                        let book = books[1];
+                        
+                        console.log(book);
+                        if (book.hasOwnProperty('fields')){
+                            selectElement('id_book_title', book['fields'].title);
+                            console.log('has title');
+                        }
+                    }
+                }
+                else{
+                    alert('Invalid QR code!');
+                    myElement.focus();
+                    myElement.value = '';
+                    return
+                }
+
+            } catch (error) {
+                // Handle the JSON parsing error
+                alert('invalid QR code!');
+                myElement.focus();
+                myElement.value = '';
+                return;
+            }
+        }
 
     </script>
 {% endif %}
