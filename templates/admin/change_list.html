@@ -110,7 +110,7 @@
 
                               {% if scan_in_form %}
                                 <button type="button" id="scanButton">Press this button before scanning your QR</button>
-                                <input type="text" id="id_book" name="book" readonly required>
+                                <input type="text" id="id_book" name="book" required>
                                 <label for="id_book_title">Book Instance</label>
                                 <input type="text" id="id_book_title" class="form-control-plaintext" name="book_title" readonly>
 
@@ -247,6 +247,9 @@
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script src="https://unpkg.com/browse/onscan.js@1.5.2/onscan.min.js"></script>
     <script>
+        var totalScanned = "";
+        var isScanning = false;
+
         function selectElement(id, valueToSelect) {    
             let element = document.getElementById(id);
             element.value = valueToSelect;
@@ -328,10 +331,10 @@
 
             // onScan.attachTo(document);
             // Register event listener
-            document.addEventListener('scan', function(sScancode, iQuantity) {
-                // alert(iQuantity + 'x ' + sScancode);
-                processScannedText(sScancode, myElement);
-            });
+            // document.addEventListener('scan', function(sScancode, iQuantity) {
+            //     // alert(iQuantity + 'x ' + sScancode);
+            //     processScannedText(sScancode, myElement);
+            // });
 
             $('#qrScanModal').on('shown.bs.modal', function () {
                 // Do something when the modal is shown
@@ -345,18 +348,44 @@
                 myElement.focus();
             });
 
-            myElement.addEventListener('textInput', function (e){
-                processScannedText(e.data, myElement);
-            });
+            // myElement.addEventListener('textInput', function (e){
+            //     console.log(e.data)
+            //     processScannedText(e.data, myElement);
+            // });
+
+            // $(myElement).bind(getAllEvents(myElement[0]), function(e) {
+            //     /* insert your code */
+            //     console.log(e);
+            // });
             
+            myElement.addEventListener('keyup', function(event) {
+                if (event.keyCode === 13) {
+                    // Enter key was pressed
+                    // Perform your desired action here
+                    console.log('Enter key pressed!');
+                    isScanning = false;
+                    processScannedText(myElement.value, myElement);
+                    // totalScanned = "";
+                }
+            });
+
             // Attach the 'paste' event listener
             myElement.addEventListener('paste', function(event) {
-                
+
+                console.log(event.clipboardData);
                 // Access the pasted content
                 const clipboardData = event.clipboardData || window.clipboardData;
                 const pastedText = clipboardData.getData('text');
 
-                processScannedText(pastedText, myElement);
+                // isScanning = true;
+
+                if(isScanning){
+                    totalScanned += pastedText;
+                }
+                // else{
+                    
+                //     isScanning = false;
+                // }
 
                 // Prevent the default paste behavior (optional)
                 event.preventDefault();
@@ -404,6 +433,7 @@
             } catch (error) {
                 // Handle the JSON parsing error
                 alert('invalid QR code!');
+                console.error(error);
                 myElement.focus();
                 myElement.value = '';
                 return;
