@@ -1,3 +1,6 @@
+import datetime
+import os
+from django.views import View
 from rest_framework import filters
 import django_filters.rest_framework
 from rest_framework import generics, mixins, viewsets
@@ -8,7 +11,6 @@ from django.contrib.auth.signals import user_logged_in
 from dal import autocomplete
 from django.db.models import Q
 from django.contrib import admin
-import vonage
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
 from django.shortcuts import render,redirect
@@ -31,7 +33,7 @@ from system.models import Book, BookInstance, BookStatus, BookType, CustomUser, 
 from django_tables2.config import RequestConfig
 from system.filters import BookInstanceFilter, OutgoingTransactionFilter, ReservationFilter
 from system.serializers import BookInstanceSerializer, GenreSerializer, NotificationSerializer, OutgoingTransactionSerializer, ReservationsSerializer, StudentSerializer
-from system.tables import BookInstanceTable, OutgoingTransactionTable
+from system.tables import BookInstanceTable, IncomingTransactionTable, OutgoingTransactionTable
 import qrcode
 from django.core import serializers
 from django.shortcuts import render, redirect
@@ -43,6 +45,13 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework import viewsets, filters
+from django.contrib.auth.views import PasswordResetView as DjangoPasswordResetView
+from django.contrib.auth.views import PasswordResetConfirmView as DjangoPasswordResetConfirmView
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+from django_tables2.export.export import TableExport
+
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -204,9 +213,13 @@ def create_incoming(request):
 
             try:
                 id = request.POST.get('book', None)
-                outgoing = OutgoingTransaction.objects.filter(book__id=id).latest('date_borrowed')
+                outgoing = OutgoingTransaction.objects.filter(book__id=id).latest('id')                
                 incoming.borrower = outgoing.borrower
+                incoming.due_date = outgoing.return_date
                 incoming.save()
+
+                outgoing.incoming = incoming
+                outgoing.save()
             except OutgoingTransaction.DoesNotExist as exception:
                 messages.error(request, f'This book {incoming.book.book.title} has no outgoing transaction!')
                 return HttpResponseRedirect(reverse_lazy('admin:system_incomingtransaction_changelist'))
@@ -518,3 +531,71 @@ class GenreList(mixins.ListModelMixin, viewsets.GenericViewSet):
         queryset = self.get_queryset()
         serializer = GenreSerializer(queryset, many=True)
         return Response(list(queryset))
+    
+
+def link_callback(uri, rel):
+    """
+    Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+    resources
+    """
+    result = finders.find(uri)
+    if result:
+            if not isinstance(result, (list, tuple)):
+                    result = [result]
+            result = list(os.path.realpath(path) for path in result)
+            path=result[0]
+    else:
+            sUrl = settings.STATIC_URL        # Typically /static/
+            sRoot = settings.STATIC_ROOT      # Typically /home/userX/project_static/
+            mUrl = settings.MEDIA_URL         # Typically /media/
+            mRoot = settings.MEDIA_ROOT       # Typically /home/userX/project_static/media/
+
+            if uri.startswith(mUrl):
+                    path = os.path.join(mRoot, uri.replace(mUrl, ""))
+            elif uri.startswith(sUrl):
+                    path = os.path.join(sRoot, uri.replace(sUrl, ""))
+            else:
+                    return uri
+
+    # make sure that file exists
+    if not os.path.isfile(path):
+            raise Exception(
+                    'media URI must start with %s or %s' % (sUrl, mUrl)
+            )
+    return path
+
+def render_pdf_view(request):
+    template_path = 'user_printer.html'
+    queryset = IncomingTransaction.objects.all()
+    table = IncomingTransactionTable(queryset)
+    context = {'table': table}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def export_table_view(request):
+    table = IncomingTransactionTable(IncomingTransaction.objects.filter(date_returned=datetime.datetime.now()))
+
+    RequestConfig(request).configure(table)
+
+
+
+    export_format = 'xlsx'#request.GET.get("_export", None)
+    if TableExport.is_valid_format(export_format):
+        exporter = TableExport(export_format, table)
+        return exporter.response(f"table.{export_format}")
+
+    return render(request, "user_printer.html", {
+        "table": table
+    })

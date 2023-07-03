@@ -10,7 +10,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from isbn_field import ISBNField
 from bookborrowing.models import CatalogueMixin, TimeStampedMixin
-
+from django.utils.html import format_html
 
 
 class Genre(CatalogueMixin):
@@ -194,16 +194,50 @@ class Transaction(models.Model):
         abstract = True
 
 
-class IncomingTransaction(Transaction):
+class IncomingTransaction(Transaction):    
     date_returned = models.DateField(default=timezone.now, blank=True)
+    due_date = models.DateField(default=timezone.now, blank=True)
     
     def __str__(self) -> str:
         return f'{self.book.book.title} - {self.borrower}'
     
+    def date_returned_format(self):
+        if self.date_returned > self.due_date:
+            return format_html('<span style="color: #cc0033; font-weight: bold;">{0}</span>', self.date_returned.strftime('%b. %d, %Y'))
+        else:
+            return format_html('<span style="color: #000;">{0}</span>', self.date_returned.strftime('%b. %d, %Y'))
+
+    date_returned_format.allow_tags = True
+    date_returned_format.short_description = 'Date Returned'
+
+    def borrower_format(self):
+        if self.date_returned > self.due_date:
+            return format_html('<span style="color: #cc0033; font-weight: bold;">{0}</span>', self.borrower)
+        else:
+            return format_html('<span style="color: #000;">{0}</span>', self.borrower)
+
+    borrower_format.allow_tags = True
+    borrower_format.short_description = 'Borrower'
+
+    def due_date_format(self):
+        if self.date_returned > self.due_date:
+            return format_html('<span style="color: #cc0033; font-weight: bold;">{0}</span>', self.due_date.strftime('%b. %d, %Y'))
+        else:
+            return format_html('<span style="color: #000;">{0}</span>', self.due_date.strftime('%b. %d, %Y'))
+
+    due_date_format.allow_tags = True
+    due_date_format.short_description = 'Due date'
+
 
 class OutgoingTransaction(Transaction):
+    incoming = models.ForeignKey(
+        IncomingTransaction,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     date_borrowed = models.DateField(default=timezone.now, blank=True)
-    return_date = models.DateField(null=True)
+    return_date = models.DateField(verbose_name="Due date", null=True)
 
     def __str__(self) -> str:
         return f'{self.book.book.title} - {self.borrower}'

@@ -57,7 +57,10 @@ class OutgoingTransactionAdmin(admin.ModelAdmin):
 
     readonly_fields = ('borrower', 'book', 'date_borrowed')
     fields = ('book', 'borrower', 'date_borrowed', 'return_date')
-    list_display = ('book', 'borrower', 'date_borrowed', 'return_date')
+    list_display = ('book', 'borrower', 'date_borrowed', 'due_date')
+
+    def due_date(self, obj):
+        return obj.return_date
 
     def has_add_permission(self, request):
         return False
@@ -81,7 +84,7 @@ class IncomingTransactionAdmin(admin.ModelAdmin):
 
     readonly_fields = ('borrower', 'book', 'date_returned')
     fields = ('book', 'borrower', 'date_returned')
-    list_display = ('book', 'borrower', 'date_returned')
+    list_display = ('book', 'borrower_format', 'date_returned_format', 'due_date_format')
 
     def has_add_permission(self, request):
         return False

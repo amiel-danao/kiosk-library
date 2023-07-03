@@ -3,7 +3,6 @@ from system.forms import LoginForm
 from system import views
 from django.contrib.auth import views as auth_views
 from rest_framework import routers
-
 from system.models import Genre
 
 app_name = 'system'
@@ -15,6 +14,7 @@ router.register(r'reservation', views.ReservationViewSet)
 router.register(r'notification', views.NotificationViewSet)
 router.register(r'outgoing_transaction', views.OutgoingTransactionViewSet)
 router.register(r'genre', views.GenreList)
+
 
 urlpatterns = [
     path('api/', include((router.urls, 'app_name'), namespace='instance_name')),
@@ -39,6 +39,7 @@ urlpatterns = [
         name='student-autocomplete',
     ),
     path('admin/send_sms/', views.send_sms, name='send_sms'),
-    path('api-token-auth/', views.CustomAuthToken.as_view()),
+    path('admin/save_excel/', views.export_table_view, name='save_excel'),
+    path('api-token-auth/', views.CustomAuthToken.as_view())
     # path('api/', include((router.urls, 'app_name'), namespace='instance_name')),
 ]

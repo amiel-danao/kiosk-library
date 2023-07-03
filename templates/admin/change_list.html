@@ -75,9 +75,11 @@
                 {% block search %}{% search_form cl %}{% endblock %}
 
                 {% if scan %}
-                    <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#qrScanModal">
+                    <button type="button" class="btn btn-primary mb-1 w-100" data-bs-toggle="modal" data-bs-target="#qrScanModal">
                         Scan QR <i class="bi bi-qr-code"></i>
                     </button>
+
+                
                     
                     <div class="modal" tabindex="-1" id="qrScanModal">
                         <div class="modal-dialog">
@@ -116,6 +118,7 @@
 
                                 <!-- <label for="id_borrower">Borrower</label> -->
                                 <!-- <input type="text" hidden id="id_borrower" class="form-control-plaintext" name="borrower"> -->
+                                
                               {% endif %}
 
                             </div>
@@ -193,6 +196,7 @@
                 </div>
             </div>
             <div class="d-block mb-4 mb-md-0 col-4 col-md-2">
+                <a href="{% url 'system:save_excel' %}" class="btn btn-primary float-end">Export xlsx</a>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group">
                         {% block object-tools-items %}

@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import django
 from django.urls import reverse
 import django_tables2 as tables
 from pydantic import ValidationError
-from system.models import BookInstance, BookStatus, OutgoingTransaction, Reservations, Student
+from system.models import BookInstance, BookStatus, IncomingTransaction, OutgoingTransaction, Reservations, Student
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import mark_safe
 from django_tables2 import TemplateColumn
@@ -30,7 +30,7 @@ class BookInstanceTable(tables.Table):
         student = Student.objects.filter(email=self.request.user.email).first()
         if student is None:
             return '-'
-        return_date = timezone.make_aware(datetime.now()).strftime('%Y-%m-%d')
+        return_date = timezone.make_aware(datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d')
         form_id = f'id_borrow_{record.pk}'
         html_string = f'''
         <form method="post" id="{form_id}" action="{url}">
@@ -43,6 +43,12 @@ class BookInstanceTable(tables.Table):
         </form>'''
         return mark_safe(html_string)
 
+class IncomingTransactionTable(tables.Table):
+    class Meta:
+        model = IncomingTransaction
+        template_name = "django_tables2/bootstrap5.html"
+        fields = ("book__book__title", "borrower", "date_returned", "due_date")
+
 
 class OutgoingTransactionTable(tables.Table):
     # status = tables.Column(empty_values=())
@@ -50,9 +56,20 @@ class OutgoingTransactionTable(tables.Table):
     class Meta:
         model = OutgoingTransaction
         template_name = "django_tables2/bootstrap5.html"
-        fields = ("book__book__title", "date_borrowed", "return_date")
+        fields = ("book__book__title", "date_borrowed", "incoming__date_returned", "return_date")
         empty_text = _("No books borrowed.")
         attrs = {'class': 'table table-hover shadow records-table'}
+        return_date = tables.Column(verbose_name= 'Due date' )
+
+        def render_date_returned(self, record):
+            if(record.incoming == None):
+                return "-"
+            else:
+                return record.incoming.date_returned
+
+
+        def render_status(self, record):
+            return BookStatus(record.status).label
 
     # def render_status(self, value, record):
     #     if record:
